@@ -42,21 +42,21 @@ namespace CarBookProject.WebApi.Controllers
         public async Task<IActionResult> CreateBanner(CreateBannerCommand command)
         {
             await _createBannerCommandHandler.Handle(command);
-            return Ok("Öne çıkan bilgisi eklendi.");
+            return Ok("Bilgi eklendi.");
         }
 
         [HttpDelete]
         public async Task<IActionResult> RemoveBanner(int id)
         {
             var value = _removeBannerCommandHandler.Handle(new RemoveBannerCommand(id));
-            return Ok("Öne çıkan bilgisi silindi.");
+            return Ok("Bilgi silindi.");
         }
 
         [HttpPut]
         public async Task<IActionResult> UpdateBanner(UpdateBannerCommand command)
         {
             await _updateBannerCommandHandler.Handle(command);
-            return Ok("Öne çıkan bilgisi güncellendi.");
+            return Ok("Bilgi güncellendi.");
         }
     }
 }
