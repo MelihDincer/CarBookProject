@@ -4,8 +4,8 @@ public class RemoveAboutCommand
 {
     public int Id { get; set; }
 
-    public RemoveAboutCommand(int ıd)
+    public RemoveAboutCommand(int id)
     {
-        Id = ıd;
+        Id = id;
     }
 }
