@@ -1,6 +1,4 @@
-﻿using CarBookProject.Domain.Entities;
-
-namespace UdemyCarBook.Domain.Entities;
+﻿namespace CarBookProject.Domain.Entities;
 
 public class CarPricing
 {

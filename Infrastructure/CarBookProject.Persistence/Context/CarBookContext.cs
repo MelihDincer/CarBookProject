@@ -1,6 +1,5 @@
 ﻿using CarBookProject.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using UdemyCarBook.Domain.Entities;
 
 namespace CarBookProject.Persistence.Context;
 
