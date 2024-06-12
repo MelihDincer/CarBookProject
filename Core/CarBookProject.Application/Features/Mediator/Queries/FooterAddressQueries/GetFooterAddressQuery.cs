@@ -1,9 +1,8 @@
 ﻿using CarBookProject.Application.Features.Mediator.Results.FooterAddressResults;
 using MediatR;
 
-namespace CarBookProject.Application.Features.Mediator.Queries.FooterAddressQueries
+namespace CarBookProject.Application.Features.Mediator.Queries.FooterAddressQueries;
+
+public class GetFooterAddressQuery : IRequest<List<GetFooterAddressQueryResult>>
 {
-    public class GetFooterAddressQuery : IRequest<List<GetFooterAddressQueryResult>>
-    {
-    }
 }
