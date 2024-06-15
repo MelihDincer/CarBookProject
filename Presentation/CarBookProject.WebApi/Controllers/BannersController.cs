@@ -46,7 +46,7 @@ public class BannersController : ControllerBase
     [HttpDelete]
     public async Task<IActionResult> RemoveBanner(int id)
     {
-        var value = _removeBannerCommandHandler.Handle(new RemoveBannerCommand(id));
+        await _removeBannerCommandHandler.Handle(new RemoveBannerCommand(id));
         return Ok("Bilgi silindi.");
     }
 
