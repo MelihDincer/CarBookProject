@@ -7,4 +7,17 @@ public class Testimonial
     public string Title { get; set; }
     public string Comment { get; set; }
     public string ImageUrl { get; set; }
+
+    public Testimonial()
+    {
+
+    }
+
+    public Testimonial(string name, string title, string comment, string imageUrl)
+    {
+        Name = name;
+        Title = title;
+        Comment = comment;
+        ImageUrl = imageUrl;
+    }
 }
