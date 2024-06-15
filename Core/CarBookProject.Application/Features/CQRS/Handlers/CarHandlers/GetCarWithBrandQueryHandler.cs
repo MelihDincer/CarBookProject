@@ -20,7 +20,6 @@ public class GetCarWithBrandQueryHandler
         return values.Select(x => new GetCarWithBrandQueryResult
         {
             CarID = x.CarID,
-            BrandID = x.BrandID,
             BrandName = x.Brand.Name,
             Model = x.Model,
             Seat = x.Seat,
