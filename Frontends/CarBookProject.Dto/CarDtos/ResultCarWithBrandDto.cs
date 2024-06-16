@@ -1,6 +1,6 @@
 ﻿namespace CarBookProject.Dto.CarDtos;
 
-public class ResultCarWithBrandsDto
+public class ResultCarWithBrandDto
 {
     public int CarID { get; set; }
     public string BrandName { get; set; }

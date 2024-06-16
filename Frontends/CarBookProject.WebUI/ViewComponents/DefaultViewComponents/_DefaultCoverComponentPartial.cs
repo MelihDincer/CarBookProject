@@ -4,11 +4,11 @@ using Newtonsoft.Json;
 
 namespace CarBookProject.WebUI.ViewComponents.DefaultViewComponents
 {
-    public class _DefaultCoverUILayoutComponentPartial : ViewComponent
+    public class _DefaultCoverComponentPartial : ViewComponent
     {
         private readonly IHttpClientFactory _httpClientFactory;
 
-        public _DefaultCoverUILayoutComponentPartial(IHttpClientFactory httpClientFactory)
+        public _DefaultCoverComponentPartial(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
         }
