@@ -49,4 +49,10 @@ public class BlogsController : ControllerBase
         await _mediator.Send(command);
         return Ok("Blog başarıyla güncellendi");
     }
+
+    [HttpGet("GetLast3BlogsWithAuthorList")]
+    public async Task<IActionResult> GetLast3BlogsWithAuthorList()
+    {
+        return Ok(await _mediator.Send(new GetLast3BlogsWithAuthorQuery()));
+    }
 }
