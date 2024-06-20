@@ -1,14 +1,14 @@
-﻿using CarBookProject.Dto.BlogDtos;
+﻿using CarBookProject.Dto.CategoryDtos;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
 namespace CarBookProject.WebUI.ViewComponents.BlogViewComponents;
 
-public class _GetLast3BlogsWithAuthorComponentPartial : ViewComponent
+public class _BlogDetailsCategoryComponentPartial : ViewComponent
 {
     private readonly IHttpClientFactory _httpClientFactory;
 
-    public _GetLast3BlogsWithAuthorComponentPartial(IHttpClientFactory httpClientFactory)
+    public _BlogDetailsCategoryComponentPartial(IHttpClientFactory httpClientFactory)
     {
         _httpClientFactory = httpClientFactory;
     }
@@ -16,11 +16,11 @@ public class _GetLast3BlogsWithAuthorComponentPartial : ViewComponent
     public async Task<IViewComponentResult> InvokeAsync()
     {
         var client = _httpClientFactory.CreateClient();
-        var responseMessage = await client.GetAsync("https://localhost:7063/api/Blogs/GetLast3BlogsWithAuthorList");
+        var responseMessage = await client.GetAsync("https://localhost:7063/api/Categories");
         if(responseMessage.IsSuccessStatusCode)
         {
             var jsonData = await responseMessage.Content.ReadAsStringAsync();
-            var values = JsonConvert.DeserializeObject<List<ResultLast3BlogWithAuthorDto>>(jsonData);
+            var values = JsonConvert.DeserializeObject<List<ResultCategoryDto>>(jsonData);
             return View(values);
         }
         return View();
