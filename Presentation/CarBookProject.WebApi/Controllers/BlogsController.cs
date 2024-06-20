@@ -55,4 +55,10 @@ public class BlogsController : ControllerBase
     {
         return Ok(await _mediator.Send(new GetLast3BlogsWithAuthorQuery()));
     }
+
+	[HttpGet("GetAllBlogsWithAuthorList")]
+	public async Task<IActionResult> GetAllBlogsWithAuthorList()
+	{
+		return Ok(await _mediator.Send(new GetAllBlogsWithAuthorQuery()));
+	}
 }
