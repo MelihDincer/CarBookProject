@@ -16,7 +16,7 @@ public class GetLast3BlogsWithAuthorQueryHandler : IRequestHandler<GetLast3Blogs
 
     public async Task<List<GetLast3BlogsWithAuthorQueryResult>> Handle(GetLast3BlogsWithAuthorQuery request, CancellationToken cancellationToken)
     {
-        var values = _repository.GetLast3BlogsWithAuthor();
+        var values = await _repository.GetLast3BlogsWithAuthorAsync();
         return values.Select(x => new GetLast3BlogsWithAuthorQueryResult
         {
             Title = x.Title,
