@@ -28,10 +28,11 @@ public class BlogController : Controller
 		return View();
 	}
 
-	public IActionResult BlogDetail()
+	public IActionResult BlogDetail(int id)
 	{
         ViewBag.v1 = "Bloglar";
         ViewBag.v2 = "Blog Detayları ve Yorumlar";
+		ViewBag.blogid = id; 
         return View();
 	}
 }
