@@ -24,7 +24,8 @@ public class GetLast3BlogsWithAuthorQueryHandler : IRequestHandler<GetLast3Blogs
             CategoryName = x.Category.Name,
             CoverImageUrl = x.CoverImageUrl,
             BlogID = x.BlogID,
-            CreatedDate = x.CreatedDate
+            CreatedDate = x.CreatedDate,
+            Description = x.Description,
         }).ToList();
     }
 }
