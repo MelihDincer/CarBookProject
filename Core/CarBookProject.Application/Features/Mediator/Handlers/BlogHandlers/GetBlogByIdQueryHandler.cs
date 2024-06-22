@@ -16,15 +16,16 @@ public class GetPricingByIdQueryHandler : IRequestHandler<GetBlogByIdQuery, GetB
 
     public async Task<GetBlogByIdQueryResult> Handle(GetBlogByIdQuery request, CancellationToken cancellationToken)
     {
-        var values = await _repository.GetByIdAsync(request.Id);
+        var value = await _repository.GetByIdAsync(request.Id);
         return new GetBlogByIdQueryResult
         {
-            BlogID = values.BlogID,
-            AuthorID = values.AuthorID,
-            CategoryID = values.CategoryID,
-            CoverImageUrl = values.CoverImageUrl,
-            CreatedDate = values.CreatedDate,
-            Title = values.Title
+            BlogID = value.BlogID,
+            AuthorID = value.AuthorID,
+            CategoryID = value.CategoryID,
+            CoverImageUrl = value.CoverImageUrl,
+            CreatedDate = value.CreatedDate,
+            Title = value.Title,
+            Description = value.Description
         };
     }
 }
