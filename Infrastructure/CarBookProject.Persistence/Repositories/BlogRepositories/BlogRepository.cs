@@ -24,7 +24,15 @@ public class BlogRepository : IBlogRepository
 		return values;
 	}
 
-	public Task<List<Blog>> GetLast3BlogsWithAuthorAsync()
+    public async Task<Blog> GetBlogByIdWithAuthorAsync(int id)
+    {
+		var value = await _context.Blogs
+			.Include(x => x.Author)
+			.Where(x => x.BlogID == id).FirstOrDefaultAsync();
+		return value;
+    }
+
+    public Task<List<Blog>> GetLast3BlogsWithAuthorAsync()
 	{
 		var values = _context.Blogs
 			.Include(x => x.Author)
