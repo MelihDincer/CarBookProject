@@ -56,9 +56,15 @@ public class BlogsController : ControllerBase
         return Ok(await _mediator.Send(new GetLast3BlogsWithAuthorQuery()));
     }
 
-	[HttpGet("GetAllBlogsWithAuthorList")]
-	public async Task<IActionResult> GetAllBlogsWithAuthorList()
-	{
-		return Ok(await _mediator.Send(new GetAllBlogsWithAuthorQuery()));
-	}
+    [HttpGet("GetAllBlogsWithAuthorList")]
+    public async Task<IActionResult> GetAllBlogsWithAuthorList()
+    {
+        return Ok(await _mediator.Send(new GetAllBlogsWithAuthorQuery()));
+    }
+
+    [HttpGet("GetBlogWithAuthor")]
+    public async Task<IActionResult> GetBlogWithAuthor(int id)
+    {
+        return Ok(await _mediator.Send(new GetBlogByIdWithAuthorQuery(id)));
+    }
 }
