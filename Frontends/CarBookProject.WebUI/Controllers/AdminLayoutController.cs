@@ -18,5 +18,10 @@ namespace CarBookProject.WebUI.Controllers
         {
             return View();
         }
+
+        public IActionResult AdminSidebarPartial()
+        {
+            return View();
+        }
     }
 }
