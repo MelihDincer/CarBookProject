@@ -10,62 +10,32 @@
 @await Html.PartialAsync("AdminHeaderPartial.cshtml")
 
 <body>
-
-    <!-- Begin page -->
     <div id="layout-wrapper">
 
         @await Html.PartialAsync("AdminNavbarPartial.cshtml")
 
         @await Html.PartialAsync("AdminSidebarPartial.cshtml")
 
-
-        <!-- ============================================================== -->
-        <!-- Start right Content here -->
-        <!-- ============================================================== -->
         <div class="main-content">
-
             <div class="page-content">
                 <div class="container-fluid">
-
-                    <!-- start page title -->
                     <div class="row">
                         <div class="col-12">
                             <div class="page-title-box d-flex align-items-center justify-content-between">
+
                                 @RenderBody()
-                                
+
                             </div>
                         </div>
-                    </div>     
-                    <!-- end page title -->
-
-                </div> <!-- container-fluid -->
+                    </div>
+                </div>
             </div>
-            <!-- End Page-content -->
-
-            @await Html.PartialAsync("AdminFooterPartial.cshtml")
-
-            
-
+            @await Html.PartialAsync("AdminFooterPartial.cshtml")         
         </div>
-        <!-- end main content-->
-
     </div>
-    <!-- END layout-wrapper -->
-
-    <!-- Overlay-->
     <div class="menu-overlay"></div>
 
-
-    <!-- jQuery  -->
-    <script src="~/Admin/vertical/assets/js/jquery.min.js"></script>
-    <script src="~/Admin/vertical/assets/js/bootstrap.bundle.min.js"></script>
-    <script src="~/Admin/vertical/assets/js/metismenu.min.js"></script>
-    <script src="~/Admin/vertical/assets/js/waves.js"></script>
-    <script src="~/Admin/vertical/assets/js/simplebar.min.js"></script>
-
-    <!-- App js -->
-    <script src="~/Admin/vertical/assets/js/theme.js"></script>
+    @await Html.PartialAsync("AdminScriptPartial.cshtml")
 
 </body>
-
 </html>
