@@ -1,4 +1,6 @@
-﻿@{
+﻿@model List<ResultCarWithBrandDto>
+
+@{
     ViewData["Title"] = "Index";
     Layout = "~/Views/AdminLayout/Index.cshtml";
 }
@@ -9,36 +11,39 @@
             <div class="col-xl-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Basic example</h4>
+                        <h4 class="card-title">Araba Listesi</h4>
+                        <p class="card-subtitle mb-4">
+                            Arabalarla ilgili ekleme, silme, güncelleme, arama ve listeleme gibi işlemleri bu sayfa üzerinden gerçekleştirebilirsiniz.
+                        </p>
+                        <a href="/AdminCar/CreateCar/" class="btn btn-outline-secondary mb-2"><i class="mdi mdi-plus">Yeni Araç Girişi</i></a>
                         <div class="table-responsive">
                             <table class="table mb-0">
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        <th>Username</th>
+                                        <th>Marka</th>
+                                        <th>Model</th>
+                                        <th>Vites Türü</th>
+                                        <th>Km</th>
+                                        <th>Sil</th>
+                                        <th>Güncelle</th>
+                                        <th>Detaylar</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>mdo</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>fat</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>twitter</td>
-                                    </tr>
+                                    @foreach(var item in Model)
+                                    {
+                                        <tr>
+                                            <th scope="row">@item.CarID</th>
+                                            <td>@item.BrandName</td>
+                                            <td>@item.Model</td>
+                                            <td>@item.Transmission</td>
+                                            <td>@item.Km</td>
+                                            <td><a href="/AdminCar/RemoveCar/@item.CarID" class="btn btn-outline-danger">Sil</a></td>
+                                            <td><a href="/AdminCar/UpdateCar/@item.CarID" class="btn btn-outline-success">Güncelle</a></td>
+                                            <td><a href="/AdminCar/CarDetail/@item.CarID" class="btn btn-outline-dark">Detaylar</a></td>
+                                        </tr>
+                                    }                                                                                                        
                                 </tbody>
                             </table>
                         </div>
