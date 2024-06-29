@@ -3,6 +3,7 @@ using CarBookProject.Dto.CarDtos;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
+using System.Net.Http;
 using System.Text;
 
 namespace CarBookProject.WebUI.Controllers;
@@ -63,5 +64,16 @@ public class AdminCarController : Controller
         return View();
     }
 
+    public async Task<IActionResult> RemoveCar(int id)
+    {
+        var client = _httpClientFactory.CreateClient();
+        var response = await client.DeleteAsync($"https://localhost:7063/api/Cars?id={id}");
+
+        if (response.IsSuccessStatusCode)
+        {
+            return RedirectToAction("Index");
+        }
+        return View();
+    }
 
 }
