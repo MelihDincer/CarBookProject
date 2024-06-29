@@ -23,7 +23,8 @@ public class GetServiceQueryHandler : IRequestHandler<GetBlogQuery, List<GetBlog
             CategoryID = x.CategoryID,
             CoverImageUrl = x.CoverImageUrl,
             CreatedDate = x.CreatedDate,
-            Title = x.Title
+            Title = x.Title,
+            Description = x.Description
         }).ToList();
     }
 }
