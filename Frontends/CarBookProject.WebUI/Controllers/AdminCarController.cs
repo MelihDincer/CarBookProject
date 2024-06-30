@@ -96,8 +96,8 @@ public class AdminCarController : Controller
         if (response.IsSuccessStatusCode)
         {
             var jsonData = await response.Content.ReadAsStringAsync();
-            var values = JsonConvert.DeserializeObject<UpdateCarDto>(jsonData);
-            return View(values);
+            var value = JsonConvert.DeserializeObject<UpdateCarDto>(jsonData);
+            return View(value);
         }
         return View();
 
@@ -116,5 +116,4 @@ public class AdminCarController : Controller
         }
         return View();
     }
-
 }

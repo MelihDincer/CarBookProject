@@ -1,4 +1,5 @@
-﻿using CarBookProject.Dto.FeatureDtos;
+﻿using CarBookProject.Dto.CarDtos;
+using CarBookProject.Dto.FeatureDtos;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Text;
@@ -40,6 +41,45 @@ namespace CarBookProject.WebUI.Controllers
             var jsonData = JsonConvert.SerializeObject(resultFeatureDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
             var response = await client.PostAsync("https://localhost:7063/api/Features", stringContent);
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+
+        public async Task<IActionResult> RemoveFeature(int id)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var response = await client.DeleteAsync($"https://localhost:7063/api/Features?id={id}");
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> UpdateFeature(int id)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var response = await client.GetAsync($"https://localhost:7063/api/Features/{id}");
+            if(response.IsSuccessStatusCode)
+            {
+                var jsonData = await response.Content.ReadAsStringAsync();
+                var value = JsonConvert.DeserializeObject<UpdateFeatureDto>(jsonData);
+                return View(value);
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateFeature(UpdateFeatureDto updateFeatureDto)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var jsonData = JsonConvert.SerializeObject(updateFeatureDto);
+            StringContent stringContent = new(jsonData, Encoding.UTF8, "application/json");
+            var response = await client.PutAsync($"https://localhost:7063/api/Features", stringContent);
             if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
