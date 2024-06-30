@@ -1,0 +1,35 @@
+﻿@model CreateBrandDto
+
+@{
+    ViewData["Title"] = "CreateBrand";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+
+                        <h4 class="card-title">Yeni Marka Girişi</h4>
+                        <p class="card-subtitle mb-4">Yeni marka bilgisi eklemek için aşağıdaki bölüme ilgili özellik adını maksimum 20 karakter olacak şekilde girmelisiniz. Veri girişinden sonra kaydet butonuna tıklayarak marka ekleme işlemini tamamlayabilirsiniz. İşlem anında hata ile karşılaşmanız durumunda, altta çıkan hata yönergelerini dikkate alıp tekrar veri girişi yapmayı deneyebilirsiniz. Çözüm sağlanamadığı takdirde her zaman bizimle iletişime geçebilirsiniz.</p>
+
+                        <form method="post" asp-action="CreateBrand" asp-controller="AdminBrand">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="exampleInputBrand">Marka Adı</label>
+                                        <input type="text" class="form-control" id="exampleInputBrand" asp-for="Name" placeholder="Özellik adını giriniz">
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary waves-effect waves-light">Kaydet</button>
+                            <a href="/AdminBrand/Index/" class="btn btn-dark waves-effect waves-light">İptal</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
