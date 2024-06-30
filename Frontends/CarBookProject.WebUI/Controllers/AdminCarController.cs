@@ -76,4 +76,45 @@ public class AdminCarController : Controller
         return View();
     }
 
+    [HttpGet]
+    public async Task<IActionResult> UpdateCar(int id)
+    {
+        var client = _httpClientFactory.CreateClient();
+
+        var responseMessage1 = await client.GetAsync("https://localhost:7063/api/Brands");
+        var jsonData1 = await responseMessage1.Content.ReadAsStringAsync();
+        var values1 = JsonConvert.DeserializeObject<List<ResultBrandDto>>(jsonData1);
+        List<SelectListItem> brands = (from x in values1
+                                       select new SelectListItem
+                                       {
+                                           Text = x.Name,
+                                           Value = x.BrandId.ToString()
+                                       }).ToList();
+        ViewBag.brands = brands;
+
+        var response = await client.GetAsync($"https://localhost:7063/api/Cars/{id}");
+        if (response.IsSuccessStatusCode)
+        {
+            var jsonData = await response.Content.ReadAsStringAsync();
+            var values = JsonConvert.DeserializeObject<UpdateCarDto>(jsonData);
+            return View(values);
+        }
+        return View();
+
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> UpdateCar(UpdateCarDto updateCarDto)
+    {
+        var client = _httpClientFactory.CreateClient();
+        var jsonData = JsonConvert.SerializeObject(updateCarDto);
+        StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
+        var response = await client.PutAsync("https://localhost:7063/api/Cars", stringContent);
+        if(response.IsSuccessStatusCode)
+        {
+            return RedirectToAction("Index");
+        }
+        return View();
+    }
+
 }
