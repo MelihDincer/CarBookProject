@@ -80,7 +80,7 @@ public class AdminFeatureController : Controller
         var client = _httpClientFactory.CreateClient();
         var jsonData = JsonConvert.SerializeObject(updateFeatureDto);
         StringContent stringContent = new(jsonData, Encoding.UTF8, "application/json");
-        var response = await client.PutAsync($"https://localhost:7063/api/Features", stringContent);
+        var response = await client.PutAsync("https://localhost:7063/api/Features", stringContent);
         if (response.IsSuccessStatusCode)
         {
             return RedirectToAction("Index");
