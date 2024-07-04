@@ -1,0 +1,41 @@
+﻿@model CreateAuthorDto
+
+@{
+    ViewData["Title"] = "CreateAuthor";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Yeni Yazar Girişi</h4>
+                        <p class="card-subtitle mb-4">Yazar alanına yeni veri girişi işlemini bu panel üzerinden gerçekleştirebilirsiniz.</p>
+                        <form method="post" asp-action="CreateAuthor" asp-controller="AdminAuthor">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="exampleInputName">Başlık</label>
+                                        <input type="text" class="form-control" id="exampleInputName" asp-for="Name" placeholder="Yazar adını giriniz">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputDescription">Görsel Url</label>
+                                        <input type="text" asp-for="ImageUrl" class="form-control" placeholder="Yazarın görsel url bilgisini giriniz"></input>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputDescription">Açıklama</label>
+                                        <textarea rows="5" asp-for="Description" class="form-control" placeholder="Açıklamayı giriniz"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary waves-effect waves-light">Kaydet</button>
+                            <a href="/Admin/AdminAuthor/Index/" class="btn btn-dark waves-effect waves-light">İptal</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
