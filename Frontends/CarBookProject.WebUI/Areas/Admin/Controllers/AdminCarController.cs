@@ -3,11 +3,12 @@ using CarBookProject.Dto.CarDtos;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
-using System.Net.Http;
 using System.Text;
 
-namespace CarBookProject.WebUI.Controllers;
+namespace CarBookProject.WebUI.Areas.Admin.Controllers;
 
+[Area("Admin")]
+[Route("Admin/[controller]/[action]/{id?}")]
 public class AdminCarController : Controller
 {
     private readonly IHttpClientFactory _httpClientFactory;

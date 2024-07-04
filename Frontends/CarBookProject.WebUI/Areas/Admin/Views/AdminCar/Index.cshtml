@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "Index";
-    Layout = "~/Views/AdminLayout/Index.cshtml";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
     int count = 0;
 }
 
@@ -16,7 +16,7 @@
                         <p class="card-subtitle mb-4">
                             Arabalarla ilgili ekleme, silme, güncelleme, arama ve listeleme gibi işlemleri bu sayfa üzerinden gerçekleştirebilirsiniz.
                         </p>
-                        <a href="/AdminCar/CreateCar/" class="btn btn-outline-secondary mb-2"><i class="mdi mdi-plus">Yeni Araç Ekle</i></a>
+                        <a href="/Admin/AdminCar/CreateCar/" class="btn btn-outline-secondary mb-2"><i class="mdi mdi-plus">Yeni Araç Ekle</i></a>
                         <div class="table-responsive">
                             <table class="table mb-0">
                                 <thead>
@@ -43,10 +43,10 @@
                                             <td>@item.Model</td>
                                             <td>@item.Transmission</td>
                                             <td>@item.Km</td>
-                                            <td><a href="/AdminCar/RemoveCar/@item.CarID" class="btn btn-outline-danger">Sil</a></td>
-                                            <td><a href="/AdminCar/UpdateCar/@item.CarID" class="btn btn-outline-success">Güncelle</a></td>
-                                            <td><a href="/AdminCar/CarDetail/@item.CarID" class="btn btn-outline-dark">Detaylar</a></td>
-                                            <td><a href="/AdminCar/CarDetail/@item.CarID" class="btn btn-outline-warning">Görüntüle</a></td>
+                                            <td><a href="/Admin/AdminCar/RemoveCar/@item.CarID" class="btn btn-outline-danger">Sil</a></td>
+                                            <td><a href="/Admin/AdminCar/UpdateCar/@item.CarID" class="btn btn-outline-success">Güncelle</a></td>
+                                            <td><a href="/Admin/AdminCar/CarDetail/@item.CarID" class="btn btn-outline-dark">Detaylar</a></td>
+                                            <td><a href="/Admin/AdminCar/CarDetail/@item.CarID" class="btn btn-outline-warning">Görüntüle</a></td>
                                             <td><a href="/CarList/CarDetail/@item.CarID" class="btn btn-outline-secondary">Fiyat Bilgileri</a></td>
                                         </tr>
                                     }                                                                                                        

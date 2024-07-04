@@ -1,8 +1,8 @@
-﻿@model UpdateFeatureDto
+﻿@model UpdateBrandDto
 
 @{
-    ViewData["Title"] = "UpdateFeature";
-    Layout = "~/Views/AdminLayout/Index.cshtml";
+    ViewData["Title"] = "UpdateBrand";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
 }
 
 <div class="page-content">
@@ -15,18 +15,18 @@
                         <h4 class="card-title">Yeni Araç Girişi</h4>
                         <p class="card-subtitle mb-4">Veri girişinden sonra kaydet butonuna tıklayarak işlemi tamamlayabilirsiniz. İşlem anında hata ile karşılaşmanız durumunda, altta çıkan hata yönergelerini dikkate alıp tekrar veri girişi yapmayı deneyebilirsiniz. Çözüm sağlanamadığı takdirde her zaman bizimle iletişime geçebilirsiniz.</p>
 
-                        <form method="post" asp-action="UpdateFeature" asp-controller="AdminFeature">
+                        <form method="post" asp-action="UpdateBrand" asp-controller="AdminBrand">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input type="hidden" asp-for="FeatureId" />
-                                        <label for="exampleInputFeatureName">Özellik Adı</label>
-                                        <input type="text" class="form-control" id="exampleInputFeatureName" asp-for="Name" placeholder="Özellik adını giriniz">
+                                        <input type="hidden" asp-for="BrandId" />
+                                        <label for="exampleInputBrandName">Marka Adı</label>
+                                        <input type="text" class="form-control" id="exampleInputBrandName" asp-for="Name" placeholder="Marka adını giriniz">
                                     </div>
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary waves-effect waves-light">Kaydet</button>
-                            <a href="/AdminFeature/Index/" class="btn btn-dark waves-effect waves-light">İptal</a>
+                            <a href="/Admin/AdminBrand/Index/" class="btn btn-dark waves-effect waves-light">İptal</a>
                         </form>
                     </div>
                 </div>
