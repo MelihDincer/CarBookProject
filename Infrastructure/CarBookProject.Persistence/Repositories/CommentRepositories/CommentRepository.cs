@@ -23,4 +23,14 @@ public class CommentRepository : ICommentRepository
             .ToListAsync();
         return values;
     }
+
+    public Task<Comment> GetCommentByIdWithBlogAsync(int id)
+    {
+        var value = _context.Comments
+            .Include(x => x.Blog)
+            .Include(y => y.Blog.Author)
+            .Include(z => z.Blog.Category)
+            .FirstOrDefaultAsync(x => x.BlogID == id);
+        return value;
+    }
 }

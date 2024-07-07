@@ -8,4 +8,5 @@ public class GetCommentByIdWithBlogQueryResult
     public string Description { get; set; }
     public string BlogTitle { get; set; }
     public string AuthorName { get; set; }
+    public string CategoryName { get; set; }
 }

@@ -1,5 +1,8 @@
-﻿using CarBookProject.Application.Features.RepositoryPattern;
+﻿using CarBookProject.Application.Features.Mediator.Commands.CommentCommands;
+using CarBookProject.Application.Features.Mediator.Queries.CommentQueries;
+using CarBookProject.Application.Features.RepositoryPattern;
 using CarBookProject.Domain.Entities;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarBookProject.WebApi.Controllers;
@@ -8,44 +11,45 @@ namespace CarBookProject.WebApi.Controllers;
 [ApiController]
 public class CommentsController : ControllerBase
 {
-    private readonly IGenericRepository<Comment> _commentRepository;
+    private readonly IMediator _mediator;
 
-    public CommentsController(IGenericRepository<Comment> commentRepository)
+    public CommentsController(IMediator mediator)
     {
-        _commentRepository = commentRepository;
+        _mediator = mediator;
     }
 
     [HttpGet]
-    public IActionResult CommentList()
+    public async Task<IActionResult> CommentList()
     {
-        var values = _commentRepository.GetAll();
+        var values = await _mediator.Send(new GetCommentQuery());
         return Ok(values);
     }
 
     [HttpGet("{id}")]
-    public IActionResult GetComment(int id)
+    public async Task<IActionResult> GetComment(int id)
     {
-        return Ok(_commentRepository.GetById(id));
+        var value = await _mediator.Send(new GetCommentByIdQuery(id));
+        return Ok(value);
     }
 
     [HttpPost]
-    public IActionResult CreateComment(Comment comment)
+    public async Task<IActionResult> CreateComment(CreateCommentCommand command)
     {
-        _commentRepository.Add(comment);
+        await _mediator.Send(command);
         return Ok("Yorum başarıyla eklendi.");
     }
 
     [HttpDelete]
-    public IActionResult DeleteComment(int id)
+    public async Task<IActionResult> DeleteComment(int id)
     {
-        _commentRepository.Remove(new Comment { CommentID = id });
+        await _mediator.Send(new RemoveCommentCommand(id));
         return Ok("Yorum başarıyla silindi.");
     }
 
     [HttpPut]
-    public IActionResult Update(Comment comment)
+    public async Task<IActionResult> Update(UpdateCommentCommand command)
     {
-        _commentRepository.Update(comment);
-        return Ok("Yorum başarıyla eklendi.");
+        await _mediator.Send(command);
+        return Ok("Yorum başarıyla güncellendi.");
     }   
 }

@@ -5,4 +5,5 @@ namespace CarBookProject.Application.Interfaces.CommentInterfaces;
 public interface ICommentRepository
 {
     Task<List<Comment>> GetAllCommentsWithBlogAsync();
+    Task<Comment> GetCommentByIdWithBlogAsync(int id);
 }
