@@ -1,0 +1,31 @@
+﻿@model CreatePricingDto
+
+@{
+    ViewData["Title"] = "CreatePricing";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+
+                        <h4 class="card-title">Yeni Ödeme Periyodu Girişi</h4>
+                        <p class="card-subtitle mb-4">Pricing alanına veri girişini aşağıdaki panelden yapabilirsiniz. Tasarımda bozulma olmaması adına yeni bir Pricing girişi yaptıktan sonra önceki Pricing alanını silin, sadece 1 tane Pricing verisi kalmalıdır.</p>
+
+                        <form method="post" asp-action="CreatePricing" asp-controller="AdminPricing">
+                            <div class="form-group">
+                                <label for="exampleInputName">Ödeme Periyot Başlığı</label>
+                                <input type="text" class="form-control" id="exampleInputName" asp-for="Name" placeholder="Ödeme Periyot Adını Giriniz (Günlük, Haftalık, Aylık vs.)">
+                            </div>
+                            <button type="submit" class="btn btn-primary waves-effect waves-light">Kaydet</button>
+                            <a href="/Admin/AdminPricing/Index/" class="btn btn-dark waves-effect waves-light">İptal</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
