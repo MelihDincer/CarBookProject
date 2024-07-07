@@ -51,5 +51,12 @@ public class CommentsController : ControllerBase
     {
         await _mediator.Send(command);
         return Ok("Yorum başarıyla güncellendi.");
-    }   
+    }
+
+    [HttpGet("GetCommentsByBlogIdWithBlog")]
+    public async Task<IActionResult> CommentListByBlog(int id)
+    {
+        var values = await _mediator.Send(new GetCommentsByBlogIdQuery(id));
+        return Ok(values);
+    }
 }
