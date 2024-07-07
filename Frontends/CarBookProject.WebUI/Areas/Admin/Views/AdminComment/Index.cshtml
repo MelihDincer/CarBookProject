@@ -1,0 +1,38 @@
+﻿@model List<ResultCommentDto>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title"><b>@ViewBag.blogtitle</b> Adlı Blogun Yorumları</h4>
+                        <p class="card-subtitle mb-4">
+                            Bloglarla ilgili o bloga yapılmış olan yorum listesini bu sayfadan görebilirsiniz. İlgili yorumları kaldırabilir ya da tekrar aktif hale getirebilirsiniz. Bunun için yorumların altında yer alan butonları kullanabilirsiniz.
+                        </p>
+                        @foreach (var item in Model)
+                        {
+                            <div class="card">
+                                <h5 class="card-header"><b>@item.Name</b> Adlı Kişinin Yorumu</h5>
+                                <div class="card-body">
+                                    <h4 class="card-title text-muted">@item.CreatedDate.ToString("dd MMMM yyy dddd")
+                                    <span> - @item.CreatedDate.ToString("HH:mm:ss")</span>
+                                    </h4>
+                                    <p class="card-text">
+                                        @item.Description
+                                    </p>
+                                    <a href="#" class="btn btn-primary waves-effect waves-light">Yorumu Kaldır</a>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
