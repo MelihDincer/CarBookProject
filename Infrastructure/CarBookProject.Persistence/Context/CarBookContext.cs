@@ -7,7 +7,7 @@ public class CarBookContext : DbContext
 {
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlServer("Server=DESKTOP-PBE5IS4\\SQLEXPRESS; initial Catalog=UdemyCarBookDb;integrated Security=true; TrustServerCertificate=true");
+        optionsBuilder.UseSqlServer("Server=DESKTOP-PBE5IS4\\SQLEXPRESS; initial Catalog=CarBookDb;integrated Security=true; TrustServerCertificate=true");
     }
     public DbSet<About> Abouts { get; set; }
     public DbSet<Banner> Banners { get; set; }
