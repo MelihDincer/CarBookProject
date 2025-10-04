@@ -32,7 +32,7 @@ namespace CarBookProject.WebUI.Controllers
             var responseMessage = await client.PostAsync("https://localhost:7063/api/Contacts", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
-                return RedirectToAction("Index", "Default");
+                TempData["SuccessMessage"] = "Mesajınız bize ulaşmıştır. En kısa zamanda sizinle iletişime geçilecektir.";              
             }
             return View();
         } 

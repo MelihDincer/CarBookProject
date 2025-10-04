@@ -36,3 +36,19 @@
         </div>
     </div>
 </section>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var successMessage = '@Html.Raw(TempData["SuccessMessage"])';
+        if (successMessage && successMessage.trim() !== "") {
+            Swal.fire({
+                title: 'Teşekkürler!',
+                text: successMessage,
+                icon: 'success',
+                confirmButtonText: 'Tamam'
+            }).then(() => {
+                window.location.href = '/Default/Index'; // ✅ burada yönlendirmek istediğin sayfayı yaz
+            });
+        }
+    });
+</script>
