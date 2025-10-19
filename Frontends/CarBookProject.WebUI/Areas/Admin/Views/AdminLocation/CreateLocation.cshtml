@@ -1,0 +1,28 @@
+﻿@model CreateLocationDto
+@{
+    ViewData["Title"] = "CreateLocation";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Lokasyon Veri Girişi Alanı</h4>
+                        <p class="card-subtitle mb-4">Araçların alındığı ve teslim edildiği noktalara ait lokasyon bilgisinin girildiği sayfası. Bilgileri eksiksiz olarak doldurmanız gerekmektedir.</p>
+                        <form method="post" asp-action="CreateLocation" asp-controller="AdminLocation">
+                            <div class="form-group">
+                                <label for="exampleInputName">Lokasyon Adı</label>
+                                <input type="text" class="form-control" id="exampleInputName" asp-for="Name" placeholder="Lokasyon bilgisini giriniz">
+                            </div>
+                            <button type="submit" class="btn btn-primary waves-effect waves-light">Kaydet</button>
+                            <a href="/Admin/AdminLocation/Index/" class="btn btn-dark waves-effect waves-light">İptal</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
