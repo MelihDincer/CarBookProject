@@ -1,0 +1,42 @@
+﻿@model UpdateTestimonialDto
+@{
+    ViewData["Title"] = "UpdateTestimonial";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Referans Sayfası Veri Düzenleme Alanı</h4>
+                        <p class="card-subtitle mb-4">Referans düzenleme işleminn yapıldığı sayfadır. Bilgileri eksiksiz doldurduğunuzdan emin olduktan sonra kaydet butonuna tıklayınız.</p>
+                        <form method="post" asp-action="UpdateTestimonial" asp-controller="AdminTestimonial">
+                            <input type="hidden" asp-for="TestimonialID" />
+                            <div class="form-group">
+                                <label for="exampleInputName">Referans Ad Soyad</label>
+                                <input type="text" class="form-control" id="exampleInputNamesurname" asp-for="Name" placeholder="Referans adını giriniz">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputTitle">Referans Unvanı</label>
+                                <input type="text" class="form-control" id="exampleInputURL" asp-for="Title" placeholder="Referans unvanını giriniz">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputImageURL">Referans Görsel</label>
+                                <input type="text" class="form-control" id="exampleInputIconURL" asp-for="ImageUrl" placeholder="Görsel seçiniz">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputImageURL">Referans Yorumu</label>
+                                <textarea rows="5" asp-for="Comment" class="form-control" placeholder="Yorumunuzu buraya yazınız.."></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary waves-effect waves-light">Kaydet</button>
+                            <a href="/Admin/AdminTestimonial/Index/" class="btn btn-dark waves-effect waves-light">İptal</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
