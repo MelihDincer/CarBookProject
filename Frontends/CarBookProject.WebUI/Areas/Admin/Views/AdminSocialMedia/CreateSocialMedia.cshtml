@@ -1,0 +1,36 @@
+﻿@model CreateSocialMediaDto
+@{
+    ViewData["Title"] = "CreateSocialMedia";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Sosyal Medya Sayfası Veri Girişi Alanı</h4>
+                        <p class="card-subtitle mb-4">Sosyal medya hesaplarınıza ait veri girişlerini buradan yapabilirsiniz. İkonlarla ilgili listeye ikon listesi üzerinden ulaşabilirsiniz.</p>
+                        <form method="post" asp-action="CreateSocialMedia" asp-controller="AdminSocialMedia">
+                            <div class="form-group">
+                                <label for="exampleInputName">Sosyal Medya Başlığı</label>
+                                <input type="text" class="form-control" id="exampleInputTitle" asp-for="Name" placeholder="Sosyal Medya başlığını giriniz">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputMedyaURL">Sosyal Medya URL</label>
+                                <input type="text" class="form-control" id="exampleInputURL" asp-for="Url" placeholder="Sosyal Medya açıklamasını giriniz">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputIconURL">Sosyal Medya Icon URL</label>
+                                <input type="text" class="form-control" id="exampleInputIconURL" asp-for="Icon" placeholder="Sosyal Medya icon bilgisini giriniz">
+                            </div>
+                            <button type="submit" class="btn btn-primary waves-effect waves-light">Kaydet</button>
+                            <a href="/Admin/AdminSocialMedia/Index/" class="btn btn-dark waves-effect waves-light">İptal</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
