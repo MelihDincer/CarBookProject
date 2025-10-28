@@ -34,7 +34,6 @@ namespace CarBookProject.Persistence.Repositories.StatisticsRepositories
             int pricingId = Convert.ToInt32(_context.Pricings.Where(x => x.Name == "Haftalık").Select(y => y.PricingID).FirstOrDefault());
             return await _context.CarPricings.Where(x => x.PricingID == pricingId).AverageAsync(y => y.Amount);
         }
-        //PATLADI
         public async Task<string> GetMostExpensiveCarBrandAsync()
         {
             int pricingID = Convert.ToInt32(_context.Pricings.Where(x => x.Name == "Günlük").Select(y => y.PricingID).FirstOrDefault());
@@ -61,7 +60,6 @@ namespace CarBookProject.Persistence.Repositories.StatisticsRepositories
             //.Select(x => x.BrandName + " " + x.Model)
             //.FirstOrDefaultAsync();
         }
-        //PATLADI
         public async Task<string> GetCheapestCarBrandAsync()
         {
             int pricingID = Convert.ToInt32(_context.Pricings.Where(x => x.Name == "Günlük").Select(y => y.PricingID).FirstOrDefault());
