@@ -14,7 +14,7 @@ public class CarRepository : ICarRepository
 		_context = context;
 	}
 
-	public List<Car> GetCarListWithBrands()
+    public List<Car> GetCarListWithBrands()
 	{
 		var values = _context.Cars.Include(x => x.Brand).ToList();
 		return values;
