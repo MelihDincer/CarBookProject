@@ -1,4 +1,5 @@
-﻿@{
+﻿@model ResultAllStatisticsDto
+@{
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
 }
@@ -11,14 +12,14 @@
                 <div class="card bg-primary border-primary">
                     <div class="card-body">
                         <div class="mb-4">
-                            <span class="badge badge-soft-light float-right">Daily</span>
-                            <h5 class="card-title mb-0 text-white">Cost per Unit</h5>
+                            <span class="badge badge-soft-light float-right">Araç Stok Sayısı</span>
+                            <h5 class="card-title mb-0 text-white">Toplam Araç</h5>
                         </div>
                         <div class="row d-flex align-items-center mb-4">
                             <div class="col-8">
-                                <h2 class="d-flex align-items-center mb-0 text-white">
-                                    $17.21
-                                </h2>
+                                <h3 class="d-flex align-items-center mb-0 text-white">
+                                    # @Model.CarCount
+                                </h3>
                             </div>
                             <div class="col-4 text-right">
                                 <span class="text-white-50">12.5% <i class="mdi mdi-arrow-up"></i></span>
@@ -36,14 +37,14 @@
                 <div class="card bg-success border-success">
                     <div class="card-body">
                         <div class="mb-4">
-                            <span class="badge badge-soft-light float-right">Per Week</span>
-                            <h5 class="card-title mb-0 text-white">Market Revenue</h5>
+                            <span class="badge badge-soft-light float-right">Mevcut Lokasyon Sayısı</span>
+                            <h5 class="card-title mb-0 text-white">Lokasyon</h5>
                         </div>
                         <div class="row d-flex align-items-center mb-4">
                             <div class="col-8">
-                                <h2 class="d-flex align-items-center text-white mb-0">
-                                    $1875.54
-                                </h2>
+                                <h3 class="d-flex align-items-center text-white mb-0">
+                                    # @Model.LocationCount
+                                </h3>
                             </div>
                             <div class="col-4 text-right">
                                 <span class="text-white-50">18.71% <i class="mdi mdi-arrow-down"></i></span>
@@ -61,14 +62,14 @@
                 <div class="card bg-warning border-warning">
                     <div class="card-body">
                         <div class="mb-4">
-                            <span class="badge badge-soft-light float-right">Per Month</span>
-                            <h5 class="card-title mb-0 text-white">Expenses</h5>
+                            <span class="badge badge-soft-light float-right">Yazar Sayısı</span>
+                            <h5 class="card-title mb-0 text-white">Blog Yazarlarımız</h5>
                         </div>
                         <div class="row d-flex align-items-center mb-4">
                             <div class="col-8">
-                                <h2 class="d-flex align-items-center text-white mb-0">
-                                    $784.62
-                                </h2>
+                                <h3 class="d-flex align-items-center text-white mb-0">
+                                   # @Model.AuthorCount
+                                </h3>
                             </div>
                             <div class="col-4 text-right">
                                 <span class="text-white-50">57% <i class="mdi mdi-arrow-up"></i></span>
@@ -86,14 +87,14 @@
                 <div class="card bg-info border-info">
                     <div class="card-body">
                         <div class="mb-4">
-                            <span class="badge badge-soft-light float-right">All Time</span>
-                            <h5 class="card-title mb-0 text-white">Daily Visits</h5>
+                            <span class="badge badge-soft-light float-right">Tüm Zamanlar</span>
+                            <h5 class="card-title mb-0 text-white">Toplam Blog Sayısı</h5>
                         </div>
                         <div class="row d-flex align-items-center mb-4">
                             <div class="col-8">
-                                <h2 class="d-flex align-items-center text-white mb-0">
-                                    1,15,187
-                                </h2>
+                                <h3 class="d-flex align-items-center text-white mb-0">
+                                    # @Model.BlogCount
+                                </h3>
                             </div>
                             <div class="col-4 text-right">
                                 <span class="text-white-50">17.8% <i class="mdi mdi-arrow-down"></i></span>
@@ -115,14 +116,14 @@
                 <div class="card bg-primary border-primary">
                     <div class="card-body">
                         <div class="mb-4">
-                            <span class="badge badge-soft-light float-right">Daily</span>
-                            <h5 class="card-title mb-0 text-white">Cost per Unit</h5>
+                            <span class="badge badge-soft-light float-right">Aktif Markalarımız</span>
+                            <h5 class="card-title mb-0 text-white">Toplam Marka Sayısı</h5>
                         </div>
                         <div class="row d-flex align-items-center mb-4">
                             <div class="col-8">
-                                <h2 class="d-flex align-items-center mb-0 text-white">
-                                    $17.21
-                                </h2>
+                                <h3 class="d-flex align-items-center mb-0 text-white">
+                                    # @Model.BrandCount
+                                </h3>
                             </div>
                             <div class="col-4 text-right">
                                 <span class="text-white-50">12.5% <i class="mdi mdi-arrow-up"></i></span>
@@ -140,14 +141,14 @@
                 <div class="card bg-success border-success">
                     <div class="card-body">
                         <div class="mb-4">
-                            <span class="badge badge-soft-light float-right">Per Week</span>
-                            <h5 class="card-title mb-0 text-white">Market Revenue</h5>
+                            <span class="badge badge-soft-light float-right">Günlük Kiralama</span>
+                            <h5 class="card-title mb-0 text-white">Ortalama Araç Fiyatı</h5>
                         </div>
                         <div class="row d-flex align-items-center mb-4">
                             <div class="col-8">
-                                <h2 class="d-flex align-items-center text-white mb-0">
-                                    $1875.54
-                                </h2>
+                                <h3 class="d-flex align-items-center text-white mb-0">
+                                    @Model.AvgDailyPrice.ToString("0.00") ₺
+                                </h3>
                             </div>
                             <div class="col-4 text-right">
                                 <span class="text-white-50">18.71% <i class="mdi mdi-arrow-down"></i></span>
@@ -165,14 +166,14 @@
                 <div class="card bg-warning border-warning">
                     <div class="card-body">
                         <div class="mb-4">
-                            <span class="badge badge-soft-light float-right">Per Month</span>
-                            <h5 class="card-title mb-0 text-white">Expenses</h5>
+                            <span class="badge badge-soft-light float-right">Haftalık Kiralama</span>
+                            <h5 class="card-title mb-0 text-white">Ortalama Araç Fiyatı</h5>
                         </div>
                         <div class="row d-flex align-items-center mb-4">
                             <div class="col-8">
-                                <h2 class="d-flex align-items-center text-white mb-0">
-                                    $784.62
-                                </h2>
+                                <h3 class="d-flex align-items-center text-white mb-0">
+                                    @Model.AvgWeeklyPrice.ToString("0.00") ₺
+                                </h3>
                             </div>
                             <div class="col-4 text-right">
                                 <span class="text-white-50">57% <i class="mdi mdi-arrow-up"></i></span>
@@ -190,14 +191,14 @@
                 <div class="card bg-info border-info">
                     <div class="card-body">
                         <div class="mb-4">
-                            <span class="badge badge-soft-light float-right">All Time</span>
-                            <h5 class="card-title mb-0 text-white">Daily Visits</h5>
+                            <span class="badge badge-soft-light float-right">Aylık Kiralama</span>
+                            <h5 class="card-title mb-0 text-white">Ortalama Araç Fiyatı</h5>
                         </div>
                         <div class="row d-flex align-items-center mb-4">
                             <div class="col-8">
-                                <h2 class="d-flex align-items-center text-white mb-0">
-                                    1,15,187
-                                </h2>
+                                <h3 class="d-flex align-items-center text-white mb-0">
+                                    @Model.AvgMonthlyPrice.ToString("0.00") ₺
+                                </h3>
                             </div>
                             <div class="col-4 text-right">
                                 <span class="text-white-50">17.8% <i class="mdi mdi-arrow-down"></i></span>
@@ -219,14 +220,14 @@
                 <div class="card bg-primary border-primary">
                     <div class="card-body">
                         <div class="mb-4">
-                            <span class="badge badge-soft-light float-right">Daily</span>
-                            <h5 class="card-title mb-0 text-white">Cost per Unit</h5>
+                            <span class="badge badge-soft-light float-right">Otomatik Vitesli Araç Sayısı</span>
+                            <h5 class="card-title mb-0 text-white">Araç Sayısı</h5>
                         </div>
                         <div class="row d-flex align-items-center mb-4">
                             <div class="col-8">
-                                <h2 class="d-flex align-items-center mb-0 text-white">
-                                    $17.21
-                                </h2>
+                                <h3 class="d-flex align-items-center mb-0 text-white">
+                                   # @Model.CarCountByAutoTransmission
+                                </h3>
                             </div>
                             <div class="col-4 text-right">
                                 <span class="text-white-50">12.5% <i class="mdi mdi-arrow-up"></i></span>
@@ -244,14 +245,14 @@
                 <div class="card bg-success border-success">
                     <div class="card-body">
                         <div class="mb-4">
-                            <span class="badge badge-soft-light float-right">Per Week</span>
-                            <h5 class="card-title mb-0 text-white">Market Revenue</h5>
+                            <span class="badge badge-soft-light float-right">Marka Adı</span>
+                            <h5 class="card-title mb-0 text-white">En Fazla Araçlı Marka</h5>
                         </div>
                         <div class="row d-flex align-items-center mb-4">
                             <div class="col-8">
-                                <h2 class="d-flex align-items-center text-white mb-0">
-                                    $1875.54
-                                </h2>
+                                <h3 class="d-flex align-items-center text-white mb-0">
+                                   -> @Model.BrandNameByMostCars
+                                </h3>
                             </div>
                             <div class="col-4 text-right">
                                 <span class="text-white-50">18.71% <i class="mdi mdi-arrow-down"></i></span>
@@ -269,14 +270,14 @@
                 <div class="card bg-warning border-warning">
                     <div class="card-body">
                         <div class="mb-4">
-                            <span class="badge badge-soft-light float-right">Per Month</span>
-                            <h5 class="card-title mb-0 text-white">Expenses</h5>
+                            <span class="badge badge-soft-light float-right">En Fazla Yorum Alan Blog</span>
+                            <h5 class="card-title mb-0 text-white">En İyi Blog</h5>
                         </div>
                         <div class="row d-flex align-items-center mb-4">
                             <div class="col-8">
-                                <h2 class="d-flex align-items-center text-white mb-0">
-                                    $784.62
-                                </h2>
+                                <h3 class="d-flex align-items-center text-white mb-0">
+                                    @Model.BlogTitleByMostComment
+                                </h3>
                             </div>
                             <div class="col-4 text-right">
                                 <span class="text-white-50">57% <i class="mdi mdi-arrow-up"></i></span>
@@ -294,14 +295,14 @@
                 <div class="card bg-info border-info">
                     <div class="card-body">
                         <div class="mb-4">
-                            <span class="badge badge-soft-light float-right">All Time</span>
-                            <h5 class="card-title mb-0 text-white">Daily Visits</h5>
+                            <span class="badge badge-soft-light float-right">10.000 Km Altındaki Araçlar</span>
+                            <h5 class="card-title mb-0 text-white">Araç Sayısı</h5>
                         </div>
                         <div class="row d-flex align-items-center mb-4">
                             <div class="col-8">
-                                <h2 class="d-flex align-items-center text-white mb-0">
-                                    1,15,187
-                                </h2>
+                                <h3 class="d-flex align-items-center text-white mb-0">
+                                    @Model.CarCountByLessThan1000Km
+                                </h3>
                             </div>
                             <div class="col-4 text-right">
                                 <span class="text-white-50">17.8% <i class="mdi mdi-arrow-down"></i></span>
@@ -323,14 +324,14 @@
                 <div class="card bg-primary border-primary">
                     <div class="card-body">
                         <div class="mb-4">
-                            <span class="badge badge-soft-light float-right">Daily</span>
-                            <h5 class="card-title mb-0 text-white">Cost per Unit</h5>
+                            <span class="badge badge-soft-light float-right">Fosil Yakıt</span>
+                            <h5 class="card-title mb-0 text-white">Benzin-Dizel Araç Sayısı</h5>
                         </div>
                         <div class="row d-flex align-items-center mb-4">
                             <div class="col-8">
-                                <h2 class="d-flex align-items-center mb-0 text-white">
-                                    $17.21
-                                </h2>
+                                <h3 class="d-flex align-items-center mb-0 text-white">
+                                   # @Model.GasolineOrDieselCarCount
+                                </h3>
                             </div>
                             <div class="col-4 text-right">
                                 <span class="text-white-50">12.5% <i class="mdi mdi-arrow-up"></i></span>
@@ -348,14 +349,14 @@
                 <div class="card bg-success border-success">
                     <div class="card-body">
                         <div class="mb-4">
-                            <span class="badge badge-soft-light float-right">Per Week</span>
-                            <h5 class="card-title mb-0 text-white">Market Revenue</h5>
+                            <span class="badge badge-soft-light float-right">Hybrid Araç</span>
+                            <h5 class="card-title mb-0 text-white">Elektrikli Araç Sayısı</h5>
                         </div>
                         <div class="row d-flex align-items-center mb-4">
                             <div class="col-8">
-                                <h2 class="d-flex align-items-center text-white mb-0">
-                                    $1875.54
-                                </h2>
+                                <h3 class="d-flex align-items-center text-white mb-0">
+                                   # @Model.ElectricCarCount
+                                </h3>
                             </div>
                             <div class="col-4 text-right">
                                 <span class="text-white-50">18.71% <i class="mdi mdi-arrow-down"></i></span>
@@ -373,14 +374,14 @@
                 <div class="card bg-warning border-warning">
                     <div class="card-body">
                         <div class="mb-4">
-                            <span class="badge badge-soft-light float-right">Per Month</span>
-                            <h5 class="card-title mb-0 text-white">Expenses</h5>
+                            <span class="badge badge-soft-light float-right">Günlük</span>
+                            <h5 class="card-title mb-0 text-white">En Pahalı Araç Modeli</h5>
                         </div>
                         <div class="row d-flex align-items-center mb-4">
                             <div class="col-8">
-                                <h2 class="d-flex align-items-center text-white mb-0">
-                                    $784.62
-                                </h2>
+                                <h3 class="d-flex align-items-center text-white mb-0">
+                                   -> @Model.BrandNameByMostExpensiveCar ₺
+                                </h3>
                             </div>
                             <div class="col-4 text-right">
                                 <span class="text-white-50">57% <i class="mdi mdi-arrow-up"></i></span>
@@ -398,14 +399,14 @@
                 <div class="card bg-info border-info">
                     <div class="card-body">
                         <div class="mb-4">
-                            <span class="badge badge-soft-light float-right">All Time</span>
-                            <h5 class="card-title mb-0 text-white">Daily Visits</h5>
+                            <span class="badge badge-soft-light float-right">Günlük Fiyat</span>
+                            <h5 class="card-title mb-0 text-white">En Ucuz Araç Modeli</h5>
                         </div>
                         <div class="row d-flex align-items-center mb-4">
                             <div class="col-8">
-                                <h2 class="d-flex align-items-center text-white mb-0">
-                                    1,15,187
-                                </h2>
+                                <h3 class="d-flex align-items-center text-white mb-0">
+                                    -> @Model.BrandNameByCheapestCar
+                                </h3>
                             </div>
                             <div class="col-4 text-right">
                                 <span class="text-white-50">17.8% <i class="mdi mdi-arrow-down"></i></span>
