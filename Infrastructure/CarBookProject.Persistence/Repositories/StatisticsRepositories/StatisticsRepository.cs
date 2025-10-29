@@ -41,50 +41,14 @@ namespace CarBookProject.Persistence.Repositories.StatisticsRepositories
             int carId = _context.CarPricings.Where(x => x.Amount == amount).Select(y => y.CarID).FirstOrDefault();
             string brandModel = _context.Cars.Where(x => x.CarID == carId).Include(y => y.Brand).Select(z => z.Brand.Name + " " + z.Model).FirstOrDefault();
             return brandModel;
-            //    return await _context.CarPricings
-            //.Where(cp => cp.PricingID == pricingId)
-            //.Join(_context.Cars,
-            //    cp => cp.CarID,
-            //    c => c.CarID,
-            //    (cp, c) => new { cp, c })
-            //.Join(_context.Brands,
-            //    x => x.c.BrandID,
-            //    b => b.BrandID,
-            //    (x, b) => new
-            //    {
-            //        BrandName = b.Name,
-            //        Model = x.c.Model,
-            //        Amount = x.cp.Amount
-            //    })
-            //.OrderByDescending(x => x.Amount)
-            //.Select(x => x.BrandName + " " + x.Model)
-            //.FirstOrDefaultAsync();
         }
         public async Task<string> GetCheapestCarBrandAsync()
         {
             int pricingID = Convert.ToInt32(_context.Pricings.Where(x => x.Name == "Günlük").Select(y => y.PricingID).FirstOrDefault());
             decimal amount = _context.CarPricings.Where(y => y.PricingID == pricingID).Min(x => x.Amount);
             int carId = _context.CarPricings.Where(x => x.Amount == amount).Select(y => y.CarID).FirstOrDefault();
-            string brandModel = _context.Cars.Where(x => x.CarID == carId).Include(y => y.Brand).Select(z => z.Brand.Name + " " + z.Model).FirstOrDefault();
-            return brandModel;
-            //    return await _context.CarPricings
-            //.Where(cp => cp.PricingID == pricingId)
-            //.Join(_context.Cars,
-            //    cp => cp.CarID,
-            //    c => c.CarID,
-            //    (cp, c) => new { cp, c })
-            //.Join(_context.Brands,
-            //    x => x.c.BrandID,
-            //    b => b.BrandID,
-            //    (x, b) => new
-            //    {
-            //        BrandName = b.Name,
-            //        Model = x.c.Model,
-            //        Amount = x.cp.Amount
-            //    })
-            //.OrderBy(x => x.Amount)
-            //.Select(x => x.BrandName + " " + x.Model)
-            //.FirstOrDefaultAsync();
+            string brandModel = await _context.Cars.Where(x => x.CarID == carId).Include(y => y.Brand).Select(z => z.Brand.Name + " " + z.Model).FirstOrDefaultAsync();
+            return brandModel;           
         }
         public async Task<int> GetBlogCountAsync()
         {
@@ -93,24 +57,26 @@ namespace CarBookProject.Persistence.Repositories.StatisticsRepositories
 
         public async Task<string> GetBlogTitleWithMostCommentsAsync()
         {
-            return await _context.Comments
-                .Join(_context.Blogs,
-                b => b.BlogID,
-                c => c.BlogID,
-                (c, b) => new { Blog = b, Comment = c }).GroupBy(x => x.Blog.Title).OrderByDescending(y => y.Count()).Select(z => z.Key).FirstOrDefaultAsync();
+            var values = await _context.Comments.GroupBy(x => x.BlogID).
+                             Select(y => new
+                             {
+                                 BlogID = y.Key,
+                                 Count = y.Count()
+                             }).OrderByDescending(z => z.Count).Take(1).FirstOrDefaultAsync();
+            string blogName = await _context.Blogs.Where(x => x.BlogID == values.BlogID).Select(y => y.Title).FirstOrDefaultAsync();
+            return blogName;
         }
         
         public async Task<string> GetBrandNameWithMostCarsAsync()
         {
-            return await _context.Cars
-         .Join(_context.Brands,
-             c => c.BrandID,
-             b => b.BrandID,
-             (c, b) => new { Car = c, Brand = b })
-         .GroupBy(x => x.Brand.Name)
-         .OrderByDescending(g => g.Count())
-         .Select(g => g.Key)
-         .FirstOrDefaultAsync();
+            var values = await _context.Cars.GroupBy(x => x.BrandID).
+                            Select(y => new
+                            {
+                                BrandID = y.Key,
+                                Count = y.Count()
+                            }).OrderByDescending(z => z.Count).Take(1).FirstOrDefaultAsync();
+            string brandName = await _context.Brands.Where(x => x.BrandID == values.BrandID).Select(y => y.Name).FirstOrDefaultAsync();
+            return brandName;
         }
 
         public async Task<int> GetCarCountAsync()
