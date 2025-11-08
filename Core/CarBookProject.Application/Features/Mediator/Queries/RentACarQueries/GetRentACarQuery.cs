@@ -13,10 +13,10 @@ namespace CarBookProject.Application.Features.Mediator.Queries.RentACarQueries
         public int LocationID { get; set; }
         public bool? Available { get; set; }
 
-        public GetRentACarQuery(int locationID, bool? available)
-        {
-            LocationID = locationID;
-            Available = available;
-        }
+        //public GetRentACarQuery(int locationID, bool? available)
+        //{
+        //    LocationID = locationID;
+        //    Available = available;
+        //}
     }
 }

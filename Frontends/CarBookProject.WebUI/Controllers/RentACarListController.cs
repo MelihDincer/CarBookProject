@@ -14,28 +14,32 @@ namespace CarBookProject.WebUI.Controllers
             _httpClientFactory = httpClientFactory;
         }
 
-        public async Task<IActionResult> Index(FilterRentACarDto filterRentACarDto)
+        public async Task<IActionResult> Index(int id) //LocationId
         {
-            var bookpickdate = TempData["bookpickdate"];
-            var bookoffdate = TempData["bookoffdate"];
-            var timepick = TempData["timepick"];
-            var timeoff = TempData["timeoff"];
-            var locationID = TempData["locationID"];
-            filterRentACarDto.LocationID = Convert.ToInt32(locationID.ToString());
-            filterRentACarDto.Available = true;
-            ViewBag.bookpickdate = bookpickdate;
-            ViewBag.bookoffdate = bookoffdate;
-            ViewBag.timepick = timepick;
-            ViewBag.timeoff = timeoff;
-            ViewBag.locationID = locationID;
+            ViewBag.v1 = "Aranan Araçlar";
+            ViewBag.v2 = "Size Uygun Araçların Listesi";
 
+            //var bookpickdate = TempData["bookpickdate"];
+            //var bookoffdate = TempData["bookoffdate"];
+            //var timepick = TempData["timepick"];
+            //var timeoff = TempData["timeoff"];
+            var locationID = TempData["locationID"];
+            //filterRentACarDto.LocationID = Convert.ToInt32(locationID.ToString());
+            //filterRentACarDto.Available = true;
+            //ViewBag.bookpickdate = bookpickdate;
+            //ViewBag.bookoffdate = bookoffdate;
+            //ViewBag.timepick = timepick;
+            //ViewBag.timeoff = timeoff;
+            ViewBag.locationID = locationID;
+            id = int.Parse(locationID.ToString());
             var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(filterRentACarDto);
-            StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PostAsync("https://localhost:7063/api/RentACars", stringContent);
+            //Available değerini queryden göndermemize gerek kalmadı, çünkü api de boş ise true dön şekilde bir şart koyuldu.Default olarak true gelecek.(Eğer nullable yapılmasaydı defaultta false geliyordu.)
+            var responseMessage = await client.GetAsync($"https://localhost:7063/api/RentACars/GetRentACarListByLocation?locationID={id}");
             if (responseMessage.IsSuccessStatusCode)
             {
-                return RedirectToAction("Index");
+                var jsonData = await responseMessage.Content.ReadAsStringAsync();
+                var values = JsonConvert.DeserializeObject<List<FilterRentACarDto>>(jsonData);
+                return View(values);
             }
 
             return View();

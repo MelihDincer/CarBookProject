@@ -18,9 +18,9 @@ public class CarPricingRepository : ICarPricingRepository
 	{
 		var values = _context.CarPricings
 			.Include(x => x.Car)
-			.Include(y => y.Car.Brand)
+			.ThenInclude(y => y.Brand)
 			.Include(z => z.Pricing)
-			.Where(q => q.PricingID == 3)
+			.Where(q => q.PricingID == 1) //GÜNLÜK
 			.ToListAsync();
 		return values;
 	}
