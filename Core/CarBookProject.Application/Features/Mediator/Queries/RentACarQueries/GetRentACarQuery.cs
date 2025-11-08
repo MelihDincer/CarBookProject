@@ -11,6 +11,12 @@ namespace CarBookProject.Application.Features.Mediator.Queries.RentACarQueries
     public class GetRentACarQuery : IRequest<List<GetRentACarQueryResult>>
     {
         public int LocationID { get; set; }
-        public bool Available { get; set; }
+        public bool? Available { get; set; }
+
+        public GetRentACarQuery(int locationID, bool? available)
+        {
+            LocationID = locationID;
+            Available = available;
+        }
     }
 }
