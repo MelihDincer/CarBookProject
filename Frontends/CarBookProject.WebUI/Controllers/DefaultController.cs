@@ -14,6 +14,7 @@ namespace CarBookProject.WebUI.Controllers
             _httpClientFactory = httpClientFactory;
         }
 
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             var client = _httpClientFactory.CreateClient();
@@ -25,10 +26,21 @@ namespace CarBookProject.WebUI.Controllers
                                             select new SelectListItem
                                             {
                                                 Text = x.Name,
-                                                Value = x.LocationID.ToString()                                               
+                                                Value = x.LocationID.ToString()
                                             }).ToList();
             ViewBag.v = values2;
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult Index(string book_pickdate, string book_off_date,string time_pick, string time_off, string locationID)
+        {
+            TempData["bookpickdate"] = book_pickdate;
+            TempData["bookoffdate"] = book_off_date;
+            TempData["timepick"] = time_pick;
+            TempData["timeoff"] = time_off;
+            TempData["locationID"] = locationID;
+            return RedirectToAction("Index", "RentACarList");
         }
     }
 }

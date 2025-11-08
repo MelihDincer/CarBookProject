@@ -319,6 +319,7 @@
 	  'autoclose': true
 	});
 	$('#time_pick').timepicker();
+	$('#time_pick2').timepicker();
 
 
 
