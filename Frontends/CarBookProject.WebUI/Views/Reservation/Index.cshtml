@@ -1,0 +1,175 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/UILayout/Index.cshtml";
+}
+
+<section style="background:linear-gradient(135deg,#f8fbfa 0%,#eefaf6 100%);min-height:100vh;padding:80px 0;font-family:'Segoe UI',sans-serif;">
+    <div class="container">
+        <div class="col-12 mx-auto">
+            <div class="card border-0 shadow-lg" style="border-radius:25px;overflow:hidden;">
+                <div class="row g-0 align-items-stretch">
+
+                    <!-- Görsel -->
+                    <div class="col-md-6 d-none d-md-block position-relative" style="padding:0px !important">
+                        <img src="https://i.pinimg.com/736x/ac/47/47/ac4747a08c30c6c96889e74efd6c243c.jpg"
+                             alt="Car Rental" style="width:100%;height:100%;object-fit:cover;">
+                        <div class="position-absolute top-50 start-50 translate-middle text-center text-white px-4 py-3"
+                             style="background:rgba(0,0,0,0.55);border-radius:15px;width:85%;">
+                            <h2 style="font-weight:700;">CarBook Premium</h2>
+                            <p style="font-size:15px;">Rezervasyonunuzu hemen oluşturun, yola çıkın 🚗</p>
+                        </div>
+                    </div>
+
+                    <!-- Form -->
+                    <div class="col-md-6 bg-white p-4">
+                        <h3 class="text-center mb-5" style="color:#01d28e;font-weight:700;letter-spacing:0.5px;">
+                            Araç Kiralama Rezervasyonu
+                        </h3>
+
+                        <form style="max-width:600px;margin:auto;">
+
+                            <!-- Araç -->
+                            <div class="mb-4">
+                                <label class="form-label fw-semibold text-muted">Almak İstediğiniz Araç</label>
+                                <input type="text" readonly value="@ViewBag.CarName"
+                                       class="form-control modern-input">
+                            </div>
+
+                            <!-- Ad Soyad -->
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+                                    <label class="form-label fw-semibold text-muted">Adınız</label>
+                                    <input type="text" class="form-control modern-input" placeholder="Ad" required>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <label class="form-label fw-semibold text-muted">Soyadınız</label>
+                                    <input type="text" class="form-control modern-input" placeholder="Soyad" required>
+                                </div>
+                            </div>
+
+                            <!-- Mail & Telefon -->
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+                                    <label class="form-label fw-semibold text-muted">Mail Adresiniz</label>
+                                    <input type="email" class="form-control modern-input" placeholder="ornek@mail.com" required>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <label class="form-label fw-semibold text-muted">Telefon Numaranız</label>
+                                    <input type="tel" class="form-control modern-input" placeholder="05XX XXX XX XX" required>
+                                </div>
+                            </div>
+
+                            <!-- Alış & Teslim Lokasyonu -->
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+                                    <label class="form-label fw-semibold text-muted">Alış Lokasyonu</label>
+                                    <div class="modern-select-wrapper">
+                                        <select class="form-select modern-select" required style="width:100% !important">
+                                            <option value="">Seçiniz...</option>
+                                            <option>İstanbul Havalimanı</option>
+                                            <option>Ankara Merkez</option>
+                                            <option>İzmir Şubesi</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <label class="form-label fw-semibold text-muted">Teslim Lokasyonu</label>
+                                    <div class="modern-select-wrapper">
+                                        <select class="form-select modern-select" required style="width:100% !important">
+                                            <option value="">Seçiniz...</option>
+                                            <option>İstanbul Havalimanı</option>
+                                            <option>Ankara Merkez</option>
+                                            <option>İzmir Şubesi</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Yaş & Ehliyet -->
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+                                    <label class="form-label fw-semibold text-muted">Yaşınız</label>
+                                    <input type="number" class="form-control modern-input" placeholder="örn: 28" required>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <label class="form-label fw-semibold text-muted">Ehliyet Yılınız</label>
+                                    <input type="number" class="form-control modern-input" placeholder="örn: 2018" required>
+                                </div>
+                            </div>
+
+                            <!-- Eklemek istedikleriniz -->
+                            <div class="mb-4">
+                                <label class="form-label fw-semibold text-muted">Eklemek İstedikleriniz</label>
+                                <textarea class="form-control modern-input" rows="5" placeholder="Ekstra talepleriniz..."></textarea>
+                            </div>
+
+                            <!-- Buton -->
+                            <div class="text-center mt-4">
+                                <button type="submit" class="btn px-5 py-2 shadow-sm car-btn"
+                                        style="background:#01d28e;border:none;border-radius:12px;font-weight:600;transition:0.3s;color:#fff;">
+                                    Rezervasyonu Tamamla
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+
+    .modern-input, .modern-select {
+        border: 1px solid #dce1e5;
+        border-radius: 10px;
+        padding: 10px 14px;
+        background-color: #f9fafc;
+        transition: all 0.25s ease;
+        font-size: 15px;
+    }
+
+        /* Focus Durumu */
+        .modern-input:focus, .modern-select:focus {
+            border-color: #01d28e !important;
+            box-shadow: 0 0 0 3px rgba(1,210,142,0.25);
+            background-color: #fff;
+        }
+
+        /* Doluysa kalıcı yeşil */
+        .modern-input:valid, .modern-select:valid {
+            border-color: #01d28e !important;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%2301d28e' viewBox='0 0 16 16'%3E%3Cpath d='M13.485 1.929a.75.75 0 0 1 .036 1.06l-7.25 7.5a.75.75 0 0 1-1.08.02l-3.25-3a.75.75 0 0 1 1.028-1.09l2.69 2.483 6.71-6.937a.75.75 0 0 1 1.066-.036z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 18px;
+        }
+
+    /* Dropdown */
+    .modern-select-wrapper {
+        position: relative;
+    }
+
+    .modern-select {
+        appearance: none;
+        background: #f9fafc url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%2301d28e' viewBox='0 0 16 16'%3E%3Cpath d='M1.5 6l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 1rem center;
+        background-size: 14px;
+    }
+
+    /* Buton hover */
+    .car-btn:hover {
+        background-color: #00ba7d !important;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 16px rgba(1,210,142,0.3);
+    }
+    }
+
+    .car-btn:active {
+        transform: translateY(0);
+        box-shadow: 0 4px 10px rgba(1,210,142,0.3);
+    }
+</style>
+
+
