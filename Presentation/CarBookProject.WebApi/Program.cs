@@ -3,6 +3,7 @@ using CarBookProject.Application.Features.CQRS.Handlers.BannerHandlers;
 using CarBookProject.Application.Features.CQRS.Handlers.BrandHandlers;
 using CarBookProject.Application.Features.CQRS.Handlers.CarHandlers;
 using CarBookProject.Application.Features.CQRS.Handlers.CategoryHandlers;
+using CarBookProject.Application.Features.Mediator.Handlers.ReservationHandlers;
 using CarBookProject.Application.Features.Mediator.Handlers.StatisticsHandlers;
 using CarBookProject.Application.Interfaces;
 using CarBookProject.Application.Interfaces.BlogInterfaces;
@@ -77,6 +78,8 @@ builder.Services.AddScoped<UpdateContactCommandHandler>();
 builder.Services.AddScoped<RemoveContactCommandHandler>();
 
 builder.Services.AddScoped<GetCarCountQueryHandler>();
+
+builder.Services.AddScoped<CreateReservationCommandHandler>();
 
 builder.Services.AddApplicationService();
 
