@@ -19,6 +19,7 @@ public class GetCarPricingWithCarQueryHandler : IRequestHandler<GetCarPricingWit
 		var values = await _repository.GetCarPricingWithCarsAsync();
 		return values.Select(x => new GetCarPricingWithCarQueryResult
 		{
+			CarID = x.CarID,
 			Amount = x.Amount,
 			BrandName = x.Car.Brand.Name,
 			CarPricingID = x.CarPricingID,

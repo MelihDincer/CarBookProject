@@ -31,9 +31,8 @@
 
                             <!-- Araç -->
                             <div class="mb-4">
-                                <label class="form-label fw-semibold text-muted">Almak İstediğiniz Araç</label>
-                                <input type="text" value="@ViewBag.CarName" asp-for="CarID"
-                                       class="form-control modern-input">
+@*                                 <label class="form-label fw-semibold text-muted">Almak İstediğiniz Araç</label>*@                                
+                                <input type="hidden" value="@ViewBag.v3" asp-for="CarID" >
                             </div>
 
                             <!-- Ad Soyad -->

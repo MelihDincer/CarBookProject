@@ -2,6 +2,7 @@
 
 public class GetCarPricingWithCarQueryResult
 {
+	public int CarID { get; set; }
 	public int CarPricingID { get; set; }
 	public string BrandName { get; set; }
 	public string Model { get; set; }
