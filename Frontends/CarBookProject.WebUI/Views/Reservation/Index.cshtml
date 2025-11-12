@@ -1,4 +1,4 @@
-﻿
+﻿@model CreateReservationDto
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/UILayout/Index.cshtml";
@@ -27,12 +27,12 @@
                             Araç Kiralama Rezervasyonu
                         </h3>
 
-                        <form style="max-width:600px;margin:auto;">
+                        <form style="max-width:600px;margin:auto;" method="post">
 
                             <!-- Araç -->
                             <div class="mb-4">
                                 <label class="form-label fw-semibold text-muted">Almak İstediğiniz Araç</label>
-                                <input type="text" readonly value="@ViewBag.CarName"
+                                <input type="text" value="@ViewBag.CarName" asp-for="CarID"
                                        class="form-control modern-input">
                             </div>
 
@@ -40,11 +40,11 @@
                             <div class="row">
                                 <div class="col-md-6 mb-4">
                                     <label class="form-label fw-semibold text-muted">Adınız</label>
-                                    <input type="text" class="form-control modern-input" placeholder="Ad" required>
+                                    <input type="text" asp-for="Name" class="form-control modern-input" placeholder="Adınız" required>
                                 </div>
                                 <div class="col-md-6 mb-4">
                                     <label class="form-label fw-semibold text-muted">Soyadınız</label>
-                                    <input type="text" class="form-control modern-input" placeholder="Soyad" required>
+                                    <input type="text" asp-for="Surname" class="form-control modern-input" placeholder="Soyadınız" required>
                                 </div>
                             </div>
 
@@ -52,11 +52,11 @@
                             <div class="row">
                                 <div class="col-md-6 mb-4">
                                     <label class="form-label fw-semibold text-muted">Mail Adresiniz</label>
-                                    <input type="email" class="form-control modern-input" placeholder="ornek@mail.com" required>
+                                    <input type="email" asp-for="Email" class="form-control modern-input" placeholder="ornek@mail.com" required>
                                 </div>
                                 <div class="col-md-6 mb-4">
                                     <label class="form-label fw-semibold text-muted">Telefon Numaranız</label>
-                                    <input type="tel" class="form-control modern-input" placeholder="05XX XXX XX XX" required>
+                                    <input type="tel" asp-for="Phone" class="form-control modern-input" placeholder="05XX XXX XX XX" required>
                                 </div>
                             </div>
 
@@ -65,7 +65,7 @@
                                 <div class="col-md-6 mb-4">
                                     <label class="form-label fw-semibold text-muted">Alış Lokasyonu</label>
                                     <div class="modern-select-wrapper">
-                                        <select asp-items="@ViewBag.v" class="form-select modern-select" required style="width:100% !important" id="location" name="locationID">
+                                        <select asp-items="@ViewBag.v" asp-for="PickUpLocationID" class="form-select modern-select" required style="width:100% !important" id="location">
                                             <option value="">Seçiniz...</option>
                                         </select>
                                     </div>
@@ -73,7 +73,7 @@
                                 <div class="col-md-6 mb-4">
                                     <label class="form-label fw-semibold text-muted">Teslim Lokasyonu</label>
                                     <div class="modern-select-wrapper">
-                                        <select asp-items="@ViewBag.v" class="form-select modern-select" required style="width:100% !important" id="location" name="locationID">
+                                        <select asp-items="@ViewBag.v" asp-for="DropOffLocationID" class="form-select modern-select" required style="width:100% !important" id="location">
                                             <option value="">Seçiniz...</option>
                                         </select>
                                     </div>
@@ -84,18 +84,18 @@
                             <div class="row">
                                 <div class="col-md-6 mb-4">
                                     <label class="form-label fw-semibold text-muted">Yaşınız</label>
-                                    <input type="number" class="form-control modern-input" placeholder="örn: 28" required>
+                                    <input type="number" asp-for="Age" class="form-control modern-input" placeholder="örn: 28" required>
                                 </div>
                                 <div class="col-md-6 mb-4">
                                     <label class="form-label fw-semibold text-muted">Ehliyet Yılınız</label>
-                                    <input type="number" class="form-control modern-input" placeholder="örn: 2018" required>
+                                    <input type="number" asp-for="DriverLicenseYear" class="form-control modern-input" placeholder="örn: 2018" required>
                                 </div>
                             </div>
 
                             <!-- Eklemek istedikleriniz -->
                             <div class="mb-4">
                                 <label class="form-label fw-semibold text-muted">Eklemek İstedikleriniz</label>
-                                <textarea class="form-control modern-input" rows="5" placeholder="Ekstra talepleriniz..." style="border-color: #dce1e5 !important;"></textarea>
+                                <textarea class="form-control modern-input" asp-for="Description" rows="5" placeholder="Ekstra talepleriniz..." style="border-color: #dce1e5 !important;"></textarea>
                             </div>
 
                             <!-- Buton -->
@@ -158,11 +158,32 @@
         transform: translateY(-2px);
         box-shadow: 0 8px 16px rgba(1,210,142,0.3);
     }
-    
+
     .car-btn:active {
         transform: translateY(0);
         box-shadow: 0 4px 10px rgba(1,210,142,0.3);
     }
 </style>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var message = '@Html.Raw(TempData["SweetAlertMessage"])';
+        var title = '@Html.Raw(TempData["SweetAlertMessageTitle"])';
+        var alertType = '@Html.Raw(TempData["SweetAlertType"])';
+        var redirectUrl = '@Html.Raw(TempData["RedirectUrl"])';
+        if (message && message.trim() !== "") {
+            Swal.fire({
+                title: title,
+                html: message,
+                icon: alertType,
+                confirmButtonText: 'Tamam'
+            }).then(() => {
+                window.location.href = redirectUrl;
+            });
+        }
+    });
+</script>
 
 
