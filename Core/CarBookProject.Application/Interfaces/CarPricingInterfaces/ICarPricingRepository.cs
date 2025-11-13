@@ -5,4 +5,5 @@ namespace CarBookProject.Application.Interfaces.CarPricingInterfaces;
 public interface ICarPricingRepository
 {
 	Task<List<CarPricing>> GetCarPricingWithCarsAsync();
+	Task<List<CarPricing>> GetCarPricingWithTimePeriodsAsync();
 }

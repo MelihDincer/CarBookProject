@@ -14,9 +14,9 @@ public class CarPricingRepository : ICarPricingRepository
 		_context = context;
 	}
 
-	public Task<List<CarPricing>> GetCarPricingWithCarsAsync()
+	public async Task<List<CarPricing>> GetCarPricingWithCarsAsync()
 	{
-		var values = _context.CarPricings
+		var values = await _context.CarPricings
 			.Include(x => x.Car)
 			.ThenInclude(y => y.Brand)
 			.Include(z => z.Pricing)
@@ -24,5 +24,12 @@ public class CarPricingRepository : ICarPricingRepository
 			.ToListAsync();
 		return values;
 	}
+    public async Task<List<CarPricing>> GetCarPricingWithTimePeriodsAsync()
+    {
+		var values = await _context.CarPricings
+			.Include(x => x.Car)
+			.ThenInclude(y => y.Brand).ToListAsync();
+        return values;
+    }
 
 }
