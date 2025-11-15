@@ -19,7 +19,8 @@ public class BlogRepository : IBlogRepository
 		var values = _context.Blogs
 			.Include(x => x.Author)
 			.Include(y => y.Category)
-			.OrderByDescending(z => z.BlogID)
+            .Include(z => z.Comments)
+            .OrderByDescending(z => z.BlogID)
 			.ToListAsync();
 		return values;
 	}

@@ -11,7 +11,6 @@
     @await Component.InvokeAsync("_BlogDetailsAuthorAboutComponentPartial", new { id = ViewBag.blogid })
 
     <div class="pt-5 mt-5">
-        <h3 class="mb-5">6 Yorum</h3>
 
         @await Component.InvokeAsync("_BlogCommentListByBlogComponentPartial", new { id = ViewBag.blogid })
 
