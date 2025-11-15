@@ -21,7 +21,8 @@ public class CreateCommentCommandHandler : IRequestHandler<CreateCommentCommand>
             BlogID = request.BlogID,
             CreatedDate = DateTime.UtcNow,
             Description = request.Description,
-            Name = request.Name
+            Name = request.Name,
+            Email = request.Email
         });
     }
 }

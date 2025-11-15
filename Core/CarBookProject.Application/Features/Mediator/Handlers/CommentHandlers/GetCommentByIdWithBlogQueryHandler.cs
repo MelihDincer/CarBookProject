@@ -25,7 +25,8 @@ public class GetCommentByIdWithBlogQueryHandler : IRequestHandler<GetCommentById
             Description = value.Description,
             BlogTitle = value.Blog.Title,
             AuthorName = value.Blog.Author.Name,
-            CategoryName = value.Blog.Category.Name
+            CategoryName = value.Blog.Category.Name,
+            Email = value.Email
         };
     }
 }

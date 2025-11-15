@@ -19,8 +19,8 @@ public class UpdateCommentCommandHandler : IRequestHandler<UpdateCommentCommand>
         var value = await _repository.GetByIdAsync(request.CommentID);
         value.Description = request.Description;
         value.Name = request.Name;
-        value.Description = request.Description;
         value.BlogID = request.BlogID;
+        value.Email = request.Email;
         await _repository.UpdateAsync(value);
     }
 }

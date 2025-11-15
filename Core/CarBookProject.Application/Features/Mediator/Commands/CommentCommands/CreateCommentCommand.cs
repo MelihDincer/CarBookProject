@@ -6,5 +6,6 @@ public class CreateCommentCommand : IRequest
 {
     public string Name { get; set; }
     public string Description { get; set; }
+    public string Email { get; set; }
     public int BlogID { get; set; }
 }
