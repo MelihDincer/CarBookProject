@@ -9,8 +9,12 @@
     {
         <li class="comment">
             <div class="vcard bio">
-                @* Kullanıcının görseli yok kayıt olurken image olcak onu getireceğiz. *@
-                <img src="/carbook-master/images/person_7.jpg" alt="Image placeholder">
+                @* Kullanıcının görseli yok kayıt olurken image olcak onu getirebiliriz. *@
+
+                <div class="vcard bio">
+                    <div class="avatar">@item.NameInitials</div>
+                </div>
+                @* <img src="/carbook-master/images/person_7.jpg" alt="Image placeholder"> *@
             </div>
             <div class="comment-body">
                 <h3>@item.Name</h3>
@@ -20,3 +24,21 @@
         </li>
     }
 </ul>
+
+<style>
+    .avatar {
+        width: 45px;
+        height: 45px;
+        background: #1089ff;
+        color: white;
+        font-weight: bold;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        text-transform: uppercase;
+    }
+
+
+</style>
