@@ -1,6 +1,9 @@
 ﻿using CarBookProject.Dto.BlogDtos;
+using CarBookProject.Dto.CommentDtos;
+using CarBookProject.Dto.ReservationDtos;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System.Text;
 
 namespace CarBookProject.WebUI.Controllers;
 
@@ -35,4 +38,34 @@ public class BlogController : Controller
 		ViewBag.blogid = id; 
         return View();
 	}
+
+	[HttpGet]
+	public PartialViewResult AddComment(int id)
+	{
+		return PartialView();
+	}
+
+    [HttpPost]
+    public async Task<IActionResult> AddComment(CreateCommentDto createCommentDto)
+    {
+		var client = _httpClientFactory.CreateClient();
+		var jsonData = JsonConvert.SerializeObject(createCommentDto);
+		StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
+		var responseMessage = await client.PostAsync("https://localhost:7063/api/Comments", stringContent);
+		if (responseMessage.IsSuccessStatusCode)
+		{
+			TempData["SweetAlertType"] = "success";
+			TempData["SweetAlertMessageTitle"] = "Yorumunuz yapılmıştır. Teşekkür ederiz ☺️";
+			TempData["RedirectUrl"] = $"/Blog/BlogDetail/{createCommentDto.BlogID}";
+			
+		}
+		else
+		{
+            TempData["SweetAlertType"] = "error";
+            TempData["SweetAlertMessageTitle"] = "Yorum yapma esnasında hata ile karşılaşıldı. Lütfen tekrar deneyiniz ❌";
+            TempData["RedirectUrl"] = $"/Blog/BlogDetail/{createCommentDto.BlogID}";
+        }
+			
+        return Redirect($"/Blog/BlogDetail/{createCommentDto.BlogID}");
+    }
 }
