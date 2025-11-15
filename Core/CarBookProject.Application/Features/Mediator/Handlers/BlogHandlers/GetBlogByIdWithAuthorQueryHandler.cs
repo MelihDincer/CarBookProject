@@ -22,7 +22,11 @@ public class GetBlogByIdWithAuthorQueryHandler : IRequestHandler<GetBlogByIdWith
             BlogID = value.BlogID,
             AuthorDescription = value.Author.Description,
             AuthorImageUrl = value.Author.ImageUrl,
-            AuthorName = value.Author.Name
+            AuthorName = value.Author.Name,
+            CoverImageUrl = value.CoverImageUrl,
+            CreatedDate = value.CreatedDate,
+            Title = value.Title,
+            Description = value.Description
         };
     }
 }

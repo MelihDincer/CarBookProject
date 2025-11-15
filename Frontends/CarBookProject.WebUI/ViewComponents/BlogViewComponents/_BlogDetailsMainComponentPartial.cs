@@ -25,4 +25,5 @@ public class _BlogDetailsMainComponentPartial : ViewComponent
         }
         return View();
     }
+
 }
