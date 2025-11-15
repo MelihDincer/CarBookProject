@@ -34,6 +34,12 @@ public class CommentRepository : ICommentRepository
         return value;
     }
 
+    public Task<int> GetCommentCount(int id)
+    {
+        var value = _context.Comments.CountAsync(x => x.BlogID == id);
+        return value;
+    }
+
     public Task<List<Comment>> GetCommentsByBlogIdWithBlogAsync(int id)
     {
         var values = _context.Comments

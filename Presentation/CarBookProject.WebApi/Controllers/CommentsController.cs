@@ -59,4 +59,11 @@ public class CommentsController : ControllerBase
         var values = await _mediator.Send(new GetCommentsByBlogIdQuery(id));
         return Ok(values);
     }
+
+    [HttpGet("GetCommentCountByBlogId")]
+    public async Task<IActionResult> GetCommentCountByBlogId(int id)
+    {
+        var values = await _mediator.Send(new GetCommentCountByBlogIdQuery(id));
+        return Ok(values);
+    }
 }
