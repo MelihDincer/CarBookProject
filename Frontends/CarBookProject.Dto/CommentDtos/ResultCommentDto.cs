@@ -8,5 +8,6 @@ public class ResultCommentDto
     public string Description { get; set; }
     public string BlogTitle { get; set; }
     public string AuthorName { get; set; }
+    public string AuthorImageUrl { get; set; }
     public string CategoryName { get; set; }
 }
