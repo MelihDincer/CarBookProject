@@ -36,9 +36,9 @@ public class CarBookContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Reservation>()
-            .HasOne(x=>x.PickUpLocation)
-            .WithMany(y=>y.PickUpReservation)
-            .HasForeignKey(z=>z.PickUpLocationID)
+            .HasOne(x => x.PickUpLocation)
+            .WithMany(y => y.PickUpReservation)
+            .HasForeignKey(z => z.PickUpLocationID)
             .OnDelete(DeleteBehavior.ClientSetNull);
 
         modelBuilder.Entity<Reservation>()
@@ -46,5 +46,20 @@ public class CarBookContext : DbContext
             .WithMany(y => y.DropOffReservation)
             .HasForeignKey(z => z.DropOffLocationID)
             .OnDelete(DeleteBehavior.ClientSetNull);
+
+        modelBuilder.Entity<CarFeature>()
+        .HasKey(cf => cf.CarFeatureID);
+
+        modelBuilder.Entity<CarFeature>()
+            .HasOne(cf => cf.Car)
+            .WithMany(c => c.CarFeatures)
+            .HasForeignKey(cf => cf.CarID)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<CarFeature>()
+            .HasOne(cf => cf.Feature)
+            .WithMany(f => f.CarFeatures)
+            .HasForeignKey(cf => cf.FeatureID)
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }

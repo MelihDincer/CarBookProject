@@ -65,7 +65,7 @@ public class AdminFeatureController : Controller
     {
         var client = _httpClientFactory.CreateClient();
         var response = await client.GetAsync($"https://localhost:7063/api/Features/{id}");
-        if(response.IsSuccessStatusCode)
+        if (response.IsSuccessStatusCode)
         {
             var jsonData = await response.Content.ReadAsStringAsync();
             var value = JsonConvert.DeserializeObject<UpdateFeatureDto>(jsonData);
