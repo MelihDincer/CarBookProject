@@ -42,6 +42,23 @@
         </div>
     </div>
 </div>
+<script>
+    document.querySelectorAll('.xf-card').forEach(card => {
+        card.addEventListener('click', function (e) {
+
+            // Eğer slider veya checkbox'a direkt basıldıysa 2 kere tetiklenmesin
+            if (e.target.tagName === 'INPUT' || e.target.classList.contains('xf-slider')) {
+                return;
+            }
+
+            const checkbox = this.querySelector('input[type="checkbox"]');
+            checkbox.checked = !checkbox.checked;
+
+            // Manuel class tetikleme için input change event'i
+            checkbox.dispatchEvent(new Event('change'));
+        });
+    });
+</script>
 
 <style>
     
