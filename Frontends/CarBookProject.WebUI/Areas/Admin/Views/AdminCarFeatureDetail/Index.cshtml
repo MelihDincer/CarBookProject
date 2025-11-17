@@ -9,34 +9,40 @@
         <div class="row">
             <div class="col-xl-12">
                 <div class="card shadow-sm border-0 rounded-3">
-                        <div class="xacton-features-page">
-                            <h3 class="xf-title">Araca Ait Özellikler Listesi</h3>
-                            <p class="xf-sub">Araca ait özellik eklemesi yapabilir, mevcut özellikleri kaldırabilir, ilgili güncellemeleri gerçekleştirebilirsiniz.</p>
+                    <div class="xacton-features-page">
+                        <h3 class="xf-title">Araca Ait Özellikler Listesi</h3>
+                        <p class="xf-sub">Araca ait özellik eklemesi yapabilir, mevcut özellikleri kaldırabilir, ilgili güncellemeleri gerçekleştirebilirsiniz.</p>
 
-                            <form method="post">
-                                <div class="xf-grid">
+                        <form method="post">
+                            <div class="xf-grid">
 
-                                    @foreach (var item in Model)
-                                    {
-                                        <div class="xf-card">
+                                @for (int i = 0; i < Model.Count; i++)
+                                {
+                                    
 
-                                            <div class="xf-info">
-                                                <span class="xf-name">@item.FeatureName</span>
-                                                <span class="xf-desc">Bu özellik araç için kullanılabilir.</span>
-                                            </div>
 
-                                            <label class="xf-switch">
-                                                <input type="hidden" name="CarFeatureID" value="@item.CarFeatureID" />
-                                                <input type="checkbox" name="Available" @(item.Available ? "checked" : "") />
-                                                <span class="xf-slider"></span>
-                                            </label>
+                                    <div class="xf-card">
 
+                                        <div class="xf-info">
+                                            <span class="xf-name">@Model[i].FeatureName</span>
+                                            <span class="xf-desc">Bu özellik araç için kullanılabilir.</span>
                                         </div>
-                                    }
-                                </div>
-                                <button class="xf-btn">Değişiklikleri Kaydet</button>
-                            </form>
-                        </div>
+
+                                        <label class="xf-switch">
+                                            <input type="hidden" asp-for="@Model[i].CarFeatureID" value="@Model[i].CarFeatureID" />
+                                            <input type="hidden" asp-for="@Model[i].FeatureName" />
+                                            <input type="checkbox" asp-for="@Model[i].Available" />
+                                            <span class="xf-slider"></span>
+                                        </label>
+
+                                    </div>
+                                }
+
+                            </div>
+                            <button class="xf-btn">Değişiklikleri Kaydet</button>
+                        </form>
+
+                    </div>
                 </div>
             </div>
         </div>
@@ -60,7 +66,7 @@
     });
 </script>
 <style>
-    
+
     .xacton-features-page {
         background: #fff;
         padding: 30px;
@@ -180,8 +186,6 @@
         .xf-btn:hover {
             background: #18a285;
         }
-
-
 
 </style>
 
