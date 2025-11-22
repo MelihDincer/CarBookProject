@@ -20,12 +20,13 @@ namespace CarBookProject.Application.Features.Mediator.Handlers.CarPricingHandle
         }
 
         public async Task<List<GetCarPricingWithTimePeriodQueryResult>> Handle(GetCarPricingWithTimePeriodQuery request, CancellationToken cancellationToken)
-        {   
+        {
             var values = await _carPricingRepository.GetCarPricingWithTimePeriodsAsync();
             var result = values
         .GroupBy(x => new { ModelName = x.Car.Model, BrandName = x.Car.Brand.Name, CoverImageUrl = x.Car.CoverImageUrl })
         .Select(g => new GetCarPricingWithTimePeriodQueryResult
         {
+            Id = g.Select(x => x.CarPricingID).FirstOrDefault(),
             Model = $"{g.Key.BrandName} {g.Key.ModelName}",
             DailyAmount = g.FirstOrDefault(p => p.PricingID == 1)?.Amount ?? 0,
             WeeklyAmount = g.FirstOrDefault(p => p.PricingID == 2)?.Amount ?? 0,

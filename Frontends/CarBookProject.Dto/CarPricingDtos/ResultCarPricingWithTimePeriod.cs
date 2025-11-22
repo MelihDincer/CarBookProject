@@ -8,6 +8,7 @@ namespace CarBookProject.Dto.CarPricingDtos
 {
     public class ResultCarPricingWithTimePeriod
     {
+        public int Id { get; set; }
         public string Model { get; set; }
         public decimal DailyAmount { get; set; }
         public decimal WeeklyAmount { get; set; }
