@@ -11,41 +11,19 @@
 <link href="assets/css/theme.min.css" rel="stylesheet" type="text/css" />
 
 <div class="page-content">
-    <div class="container-fluid">
-
-        <!-- start page title -->
-        <div class="row">
-            <div class="col-12">
-                <div class="page-title-box d-flex align-items-center justify-content-between">
-                    <h4 class="mb-0 font-size-18">Dashboard</h4>
-                </div>
-            </div>
-        </div>
-        <!-- end page title -->
+    <div class="container-fluid">      
         @await Component.InvokeAsync("_AdminDashboardStatisticsComponentPartial")
-
-
-
-        <!-- end row -->
-
         <div class="row">
-            @await Component.InvokeAsync("_AdminDashboardChart1ComponentPartial") <!-- end col -->
-            @await Component.InvokeAsync("_AdminDashboardChart2ComponentPartial")<!-- end col -->
-            @await Component.InvokeAsync("_AdminDashboardChart3ComponentPartial")<!-- end col -->
+            @await Component.InvokeAsync("_AdminDashboardChart1ComponentPartial")
+            @await Component.InvokeAsync("_AdminDashboardChart2ComponentPartial")
+            @await Component.InvokeAsync("_AdminDashboardChart3ComponentPartial")
         </div>
-        <!-- end row-->
-
         <div class="row">
             @await Component.InvokeAsync("_AdminDashboardCarPricingListComponentPartial")
-            <!-- end col -->
             @await Component.InvokeAsync("_AdminDashboardBlogListComponentPartial")
-            <!-- end col -->
         </div>
-
-    </div> <!-- container-fluid -->
+    </div>
 </div>
-<!-- End Page-content -->
-
 <footer class="footer">
     <div class="container-fluid">
         <div class="row">
@@ -60,8 +38,6 @@
         </div>
     </div>
 </footer>
-
-
 
 <script src="~/Admin/vertical/assets/js/jquery.min.js"></script>
 <script src="~/Admin/vertical/assets/js/bootstrap.bundle.min.js"></script>

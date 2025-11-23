@@ -24,7 +24,7 @@ namespace CarBookProject.WebUI.ViewComponents.DashboardViewComponents
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
                 var values = JsonConvert.DeserializeObject<List<ResultCarPricingWithTimePeriod>>(jsonData);
-                var last5Values = values.OrderByDescending(x => x.Id).Take(5).ToList();
+                var last5Values = values.OrderByDescending(x => x.Id).Take(6).ToList();
                 return View(last5Values);
             }
             return View();
