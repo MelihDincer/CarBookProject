@@ -16,8 +16,9 @@ public class CarsController : ControllerBase
     private readonly UpdateCarCommandHandler _updateCarCommandHandler;
     private readonly RemoveCarCommandHandler _removeCarCommandHandler;
     private readonly GetLast5CarsWithBrandQueryHandler _getLast5CarsWithBrandQueryHandler;
+    private readonly GetCarByIdWithBrandQueryHandler _getCarByIdWithBrandQueryHandler;
 
-    public CarsController(CreateCarCommandHandler createCarCommandHandler, GetCarByIdQueryHandler getCarByIdQueryHandler, GetCarQueryHandler getCarQueryHandler, GetCarWithBrandQueryHandler getCarWithBrandQueryHandler, UpdateCarCommandHandler updateCarCommandHandler, RemoveCarCommandHandler removeCarCommandHandler, GetLast5CarsWithBrandQueryHandler getLast5CarsWithBrandQueryHandler)
+    public CarsController(CreateCarCommandHandler createCarCommandHandler, GetCarByIdQueryHandler getCarByIdQueryHandler, GetCarQueryHandler getCarQueryHandler, GetCarWithBrandQueryHandler getCarWithBrandQueryHandler, UpdateCarCommandHandler updateCarCommandHandler, RemoveCarCommandHandler removeCarCommandHandler, GetLast5CarsWithBrandQueryHandler getLast5CarsWithBrandQueryHandler, GetCarByIdWithBrandQueryHandler getCarByIdWithBrandQueryHandler)
     {
         _createCarCommandHandler = createCarCommandHandler;
         _getCarByIdQueryHandler = getCarByIdQueryHandler;
@@ -26,6 +27,7 @@ public class CarsController : ControllerBase
         _updateCarCommandHandler = updateCarCommandHandler;
         _removeCarCommandHandler = removeCarCommandHandler;
         _getLast5CarsWithBrandQueryHandler = getLast5CarsWithBrandQueryHandler;
+        _getCarByIdWithBrandQueryHandler = getCarByIdWithBrandQueryHandler;
     }
 
     [HttpGet]
@@ -72,6 +74,13 @@ public class CarsController : ControllerBase
     public IActionResult GetLast5CarsWithBrand()
     {
         var values = _getLast5CarsWithBrandQueryHandler.Handle();
+        return Ok(values);
+    }
+
+    [HttpGet("GetCarByIdWithBrand")]
+    public async Task<IActionResult> GetCarByIdWithBrand(int id)
+    {
+        var values = await _getCarByIdWithBrandQueryHandler.Handle(new GetCarByIdWithBrandQuery(id));
         return Ok(values);
     }
 }

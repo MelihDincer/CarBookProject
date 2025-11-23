@@ -6,4 +6,5 @@ public interface ICarRepository
 {
     List<Car> GetCarListWithBrands();
     List<Car> GetLast5CarsWithBrands();
+    Car GetCarByIdWithBrands(int carId);
 }
