@@ -1,0 +1,37 @@
+﻿using CarBookProject.Application.Features.Mediator.Queries.ReviewQueries;
+using CarBookProject.Application.Features.Mediator.Results.ReviewResults;
+using CarBookProject.Application.Interfaces.ReviewInterfaces;
+using MediatR;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CarBookProject.Application.Features.Mediator.Handlers.ReviewHandlers
+{
+    public class GetReviewByCarIdQueryHandler : IRequestHandler<GetReviewByCarIdQuery, List<GetReviewByCarIdQueryResult>>
+    {
+        private readonly IReviewRepository _repository;
+
+        public GetReviewByCarIdQueryHandler(IReviewRepository repository)
+        {
+            _repository = repository;
+        }
+
+        public async Task<List<GetReviewByCarIdQueryResult>> Handle(GetReviewByCarIdQuery request, CancellationToken cancellationToken)
+        {
+            var values = _repository.GetReviewsByCarId(request.Id);
+            return values.Select(x => new GetReviewByCarIdQueryResult
+            {
+                CarId = x.CarId,
+                Comment = x.Comment,
+                CustomerName = x.CustomerName,
+                CustomerImage = x.CustomerImage,
+                RatingValue = x.RatingValue,
+                ReviewDate = x.ReviewDate,
+                ReviewId = x.ReviewId
+            }).ToList();
+        }
+    }
+}

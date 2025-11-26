@@ -19,5 +19,6 @@
         public List<RentACar> RentACars { get; set; }
         public List<RentACarProcess> RentACarProcesses { get; set; }
         public List<Reservation> Reservation { get; set; }
+        public List<Review> Reviews { get; set; }
     }
 }

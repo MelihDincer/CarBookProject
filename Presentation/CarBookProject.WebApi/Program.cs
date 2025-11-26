@@ -13,6 +13,7 @@ using CarBookProject.Application.Interfaces.CarInterfaces;
 using CarBookProject.Application.Interfaces.CarPricingInterfaces;
 using CarBookProject.Application.Interfaces.CommentInterfaces;
 using CarBookProject.Application.Interfaces.RentACarInterfaces;
+using CarBookProject.Application.Interfaces.ReviewInterfaces;
 using CarBookProject.Application.Interfaces.StatisticsInterfaces;
 using CarBookProject.Application.Interfaces.TagCloudInterfaces;
 using CarBookProject.Application.Services;
@@ -25,6 +26,7 @@ using CarBookProject.Persistence.Repositories.CarPricingRepositories;
 using CarBookProject.Persistence.Repositories.CarRepositories;
 using CarBookProject.Persistence.Repositories.CommentRepositories;
 using CarBookProject.Persistence.Repositories.RentACarRepositories;
+using CarBookProject.Persistence.Repositories.ReviewRepositories;
 using CarBookProject.Persistence.Repositories.StatisticsRepositories;
 using CarBookProject.Persistence.Repositories.TagCloudRepositories;
 using UdemyCarBook.Application.Features.CQRS.Handlers.ContactHandlers;
@@ -44,6 +46,7 @@ builder.Services.AddScoped(typeof(IStatisticsRepository), typeof(StatisticsRepos
 builder.Services.AddScoped(typeof(IRentACarRepository), typeof(RentACarRepository));
 builder.Services.AddScoped(typeof(ICarFeatureRepository), typeof(CarFeatureRepository));
 builder.Services.AddScoped(typeof(ICarDescriptionRepository), typeof(CarDescriptionRepository));
+builder.Services.AddScoped(typeof(IReviewRepository), typeof(ReviewRepository));
 
 builder.Services.AddScoped<GetAboutQueryHandler>();
 builder.Services.AddScoped<GetAboutByIdQueryHandler>();
