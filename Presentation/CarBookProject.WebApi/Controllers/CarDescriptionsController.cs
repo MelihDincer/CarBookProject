@@ -19,7 +19,7 @@ namespace CarBookProject.WebApi.Controllers
         [HttpGet] 
         public async Task<IActionResult> CarDescriptionByCarId(int id)
         {
-            var value = _mediator.Send(new GetCarDescriptionByCarIdQuery(id));
+            var value = await _mediator.Send(new GetCarDescriptionByCarIdQuery(id));
             return Ok(value);
         }
     }
