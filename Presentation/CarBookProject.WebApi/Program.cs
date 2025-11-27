@@ -3,6 +3,7 @@ using CarBookProject.Application.Features.CQRS.Handlers.BannerHandlers;
 using CarBookProject.Application.Features.CQRS.Handlers.BrandHandlers;
 using CarBookProject.Application.Features.CQRS.Handlers.CarHandlers;
 using CarBookProject.Application.Features.CQRS.Handlers.CategoryHandlers;
+using CarBookProject.Application.Features.Mediator.Commands.ReviewCommands;
 using CarBookProject.Application.Features.Mediator.Handlers.ReservationHandlers;
 using CarBookProject.Application.Features.Mediator.Handlers.StatisticsHandlers;
 using CarBookProject.Application.Interfaces;
@@ -29,6 +30,9 @@ using CarBookProject.Persistence.Repositories.RentACarRepositories;
 using CarBookProject.Persistence.Repositories.ReviewRepositories;
 using CarBookProject.Persistence.Repositories.StatisticsRepositories;
 using CarBookProject.Persistence.Repositories.TagCloudRepositories;
+using FluentValidation;
+using FluentValidation.AspNetCore;
+using System.Reflection;
 using UdemyCarBook.Application.Features.CQRS.Handlers.ContactHandlers;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -92,6 +96,10 @@ builder.Services.AddScoped<GetCarCountQueryHandler>();
 builder.Services.AddScoped<CreateReservationCommandHandler>();
 
 builder.Services.AddApplicationService();
+builder.Services.AddControllers().AddFluentValidation(x =>
+{
+    x.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+});
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
