@@ -18,6 +18,7 @@ using CarBookProject.Application.Interfaces.ReviewInterfaces;
 using CarBookProject.Application.Interfaces.StatisticsInterfaces;
 using CarBookProject.Application.Interfaces.TagCloudInterfaces;
 using CarBookProject.Application.Services;
+using CarBookProject.Application.Tools;
 using CarBookProject.Persistence.Context;
 using CarBookProject.Persistence.Repositories;
 using CarBookProject.Persistence.Repositories.BlogRepositories;
@@ -30,13 +31,27 @@ using CarBookProject.Persistence.Repositories.RentACarRepositories;
 using CarBookProject.Persistence.Repositories.ReviewRepositories;
 using CarBookProject.Persistence.Repositories.StatisticsRepositories;
 using CarBookProject.Persistence.Repositories.TagCloudRepositories;
-using FluentValidation;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using System.Reflection;
+using System.Text;
 using UdemyCarBook.Application.Features.CQRS.Handlers.ContactHandlers;
 
 var builder = WebApplication.CreateBuilder(args);
-
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt=>
+{
+    opt.RequireHttpsMetadata = false;
+    opt.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidAudience= JwtTokenDefaults.ValidAudience,
+        ValidIssuer = JwtTokenDefaults.ValidIssuer,
+        ClockSkew = TimeSpan.Zero,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JwtTokenDefaults.Key)),
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true
+    };
+});
 // Add services to the container.
 builder.Services.AddScoped<CarBookContext>();
 
@@ -116,6 +131,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseAuthentication();
 
 app.UseAuthorization();
 
