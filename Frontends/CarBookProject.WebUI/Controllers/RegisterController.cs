@@ -21,6 +21,7 @@ namespace CarBookProject.WebUI.Controllers
             return View();
         }
 
+        [HttpPost]
         public async Task<IActionResult> CreateAppUser(CreateRegisterDto createRegisterDto)
         {
             var client = _httpClientFactory.CreateClient();
