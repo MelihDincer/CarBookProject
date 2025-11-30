@@ -4,5 +4,6 @@ namespace CarBookProject.WebApi.Hubs
 {
     public class CarHub : Hub
     {
+
     }
 }

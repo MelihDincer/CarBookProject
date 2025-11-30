@@ -31,6 +31,7 @@ using CarBookProject.Persistence.Repositories.RentACarRepositories;
 using CarBookProject.Persistence.Repositories.ReviewRepositories;
 using CarBookProject.Persistence.Repositories.StatisticsRepositories;
 using CarBookProject.Persistence.Repositories.TagCloudRepositories;
+using CarBookProject.WebApi.Extensions;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -39,6 +40,21 @@ using System.Text;
 using UdemyCarBook.Application.Features.CQRS.Handlers.ContactHandlers;
 
 var builder = WebApplication.CreateBuilder(args);
+
+
+//SignalR Registration Process
+builder.Services.AddCors(opt =>
+{
+    opt.AddPolicy("CorsPolicy", builder =>
+    {
+        builder.AllowAnyHeader()
+        .AllowAnyMethod()
+        .SetIsOriginAllowed((host) => true)
+        .AllowCredentials();
+    });
+});
+
+//JWT Registration Process
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt=>
 {
     opt.RequireHttpsMetadata = false;
@@ -52,63 +68,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
         ValidateIssuerSigningKey = true
     };
 });
-// Add services to the container.
-builder.Services.AddScoped<CarBookContext>();
 
-builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-builder.Services.AddScoped(typeof(ICarRepository), typeof(CarRepository));
-builder.Services.AddScoped(typeof(IBlogRepository), typeof(BlogRepository));
-builder.Services.AddScoped(typeof(ICarPricingRepository), typeof(CarPricingRepository));
-builder.Services.AddScoped(typeof(ITagCloudRepository), typeof(TagCloudRepository));
-builder.Services.AddScoped(typeof(ICommentRepository), typeof(CommentRepository));
-builder.Services.AddScoped(typeof(IStatisticsRepository), typeof(StatisticsRepository));
-builder.Services.AddScoped(typeof(IRentACarRepository), typeof(RentACarRepository));
-builder.Services.AddScoped(typeof(ICarFeatureRepository), typeof(CarFeatureRepository));
-builder.Services.AddScoped(typeof(ICarDescriptionRepository), typeof(CarDescriptionRepository));
-builder.Services.AddScoped(typeof(IReviewRepository), typeof(ReviewRepository));
-
-builder.Services.AddScoped<GetAboutQueryHandler>();
-builder.Services.AddScoped<GetAboutByIdQueryHandler>();
-builder.Services.AddScoped<CreateAboutCommandHandler>();
-builder.Services.AddScoped<UpdateAboutCommandHandler>();
-builder.Services.AddScoped<RemoveAboutCommandHandler>();
-
-builder.Services.AddScoped<GetBannerQueryHandler>();
-builder.Services.AddScoped<GetBannerByIdQueryHandler>();
-builder.Services.AddScoped<CreateBannerCommandHandler>();
-builder.Services.AddScoped<UpdateBannerCommandHandler>();
-builder.Services.AddScoped<RemoveBannerCommandHandler>();
-
-builder.Services.AddScoped<GetBrandQueryHandler>();
-builder.Services.AddScoped<GetBrandByIdQueryHandler>();
-builder.Services.AddScoped<CreateBrandCommandHandler>();
-builder.Services.AddScoped<UpdateBrandCommandHandler>();
-builder.Services.AddScoped<RemoveBrandCommandHandler>();
-
-builder.Services.AddScoped<GetCarQueryHandler>();
-builder.Services.AddScoped<GetCarWithBrandQueryHandler>();
-builder.Services.AddScoped<GetCarByIdQueryHandler>();
-builder.Services.AddScoped<CreateCarCommandHandler>();
-builder.Services.AddScoped<UpdateCarCommandHandler>();
-builder.Services.AddScoped<RemoveCarCommandHandler>();
-builder.Services.AddScoped<GetLast5CarsWithBrandQueryHandler>();
-builder.Services.AddScoped<GetCarByIdWithBrandQueryHandler>();
-
-builder.Services.AddScoped<GetCategoryQueryHandler>();
-builder.Services.AddScoped<GetCategoryByIdQueryHandler>();
-builder.Services.AddScoped<CreateCategoryCommandHandler>();
-builder.Services.AddScoped<UpdateCategoryCommandHandler>();
-builder.Services.AddScoped<RemoveCategoryCommandHandler>();
-
-builder.Services.AddScoped<GetContactQueryHandler>();
-builder.Services.AddScoped<GetContactByIdQueryHandler>();
-builder.Services.AddScoped<CreateContactCommandHandler>();
-builder.Services.AddScoped<UpdateContactCommandHandler>();
-builder.Services.AddScoped<RemoveContactCommandHandler>();
-
-builder.Services.AddScoped<GetCarCountQueryHandler>();
-
-builder.Services.AddScoped<CreateReservationCommandHandler>();
+builder.Services.AddProjectServices();
 
 builder.Services.AddApplicationService();
 builder.Services.AddControllers().AddFluentValidation(x =>
