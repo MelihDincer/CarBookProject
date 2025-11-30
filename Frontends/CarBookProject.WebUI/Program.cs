@@ -9,7 +9,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddCo
 {
     opt.LoginPath = "/Login/Index/";
     opt.LogoutPath = "/Login/LogOut/";
-    opt.AccessDeniedPath = "/Errors/Forbidden/";
+    opt.AccessDeniedPath = "/error/403/";
     opt.Cookie.SameSite = SameSiteMode.Strict;
     opt.Cookie.HttpOnly = true;
     opt.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
