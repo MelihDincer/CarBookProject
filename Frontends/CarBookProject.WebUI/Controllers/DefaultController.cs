@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
+using System.Net;
 using System.Net.Http.Headers;
 
 namespace CarBookProject.WebUI.Controllers
@@ -24,15 +25,27 @@ namespace CarBookProject.WebUI.Controllers
                 var client = _httpClientFactory.CreateClient();
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
                 var response = await client.GetAsync("https://localhost:7063/api/Locations");
-                var jsonData = await response.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultLocationDto>>(jsonData);
-                List<SelectListItem> values2 = (from x in values
-                                                select new SelectListItem
-                                                {
-                                                    Text = x.Name,
-                                                    Value = x.LocationID.ToString()
-                                                }).ToList();
-                ViewBag.v = values2;
+                if (response.StatusCode == HttpStatusCode.Forbidden)
+                {
+                    return Redirect("/error/403");
+                }
+                else if (response.StatusCode == HttpStatusCode.Unauthorized)
+                {
+                    return Redirect("/Login/Index/");
+                }
+                else
+                {
+                    var jsonData = await response.Content.ReadAsStringAsync();
+                    var values = JsonConvert.DeserializeObject<List<ResultLocationDto>>(jsonData);
+                    List<SelectListItem> values2 = (from x in values
+                                                    select new SelectListItem
+                                                    {
+                                                        Text = x.Name,
+                                                        Value = x.LocationID.ToString()
+                                                    }).ToList();
+                    ViewBag.v = values2;
+                }
+
             }
 
             return View();

@@ -1,0 +1,90 @@
+﻿@{
+    Layout = null;
+    var userName = User?.Identity?.IsAuthenticated == true ? User.Identity.Name : "Ziyaretçi";
+}
+
+<!doctype html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Erişim Reddedildi - CARBOOK</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .access-denied {
+          min-height: 70vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .card-access {
+          max-width: 900px;
+          border: none;
+          box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+          border-radius: 12px;
+        }
+        .illustration {
+          background: linear-gradient(180deg,#0d6efd33 0%, #6c757d11 100%);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          min-height: 260px;
+          border-top-left-radius: 12px;
+          border-bottom-left-radius: 12px;
+        }
+        .illustration img{ width: 100%; height: 500px; }
+        .kicker { font-size: .85rem; letter-spacing: .08em; text-transform: uppercase; }
+        @@media (max-width: 767px){
+          .illustration{ display:none; }
+          .card-access{ border-radius: 8px; }
+        }
+    </style>
+</head>
+<body>
+    <main class="container py-4">
+        <div class="access-denied">
+            <div class="card card-access row g-0 overflow-hidden">
+                <div class="col-12 illustration d-none d-md-flex">
+                    <img src="https://images.pexels.com/photos/210019/pexels-photo-210019.jpeg" alt="Access Denied" loading="lazy">
+                </div>
+                <div class="col-12 p-4" style="font-size: smaller !important">
+                    <div class="mb-3">
+                        <span class="badge bg-danger kicker">Erişim Reddedildi</span>
+                    </div>
+
+                    <h3 class="fw-bold">Bu sayfaya erişim yetkiniz yok</h3>
+                    <p class="text-muted">Merhaba <strong>@userName</strong>, bu sayfayı görüntülemek için gerekli izinlere sahip değilsiniz. Eğer bu bir hata olduğunu düşünüyorsanız, aşağıdaki adımları takip edebilirsiniz.</p>
+
+                    <ul class="list-unstyled mb-3">
+                        <li>• Rol ve yetkilerinizi kontrol edin.</li>
+                        <li>• Hesabınızın yönetici tarafından yetkilendirildiğinden emin olun.</li>
+                        <li>• Hala sorun yaşıyorsanız destek ekibimize ulaşın.</li>
+                    </ul>
+
+                    <div class="d-flex gap-2 mb-3 flex-wrap">
+                        <a href="javascript:history.back()" class="btn btn-outline-secondary">Geri Dön</a>
+                        <a href="/Default/Index/" class="btn btn-primary">Ana Sayfa</a>
+                        <a href="mailto:support@carbook.example?subject=Erişim%20Talebi&body=Merhaba%2C%20" class="btn btn-outline-primary">Yardım İste</a>
+                    </div>
+
+                    <div class="small text-muted">
+                        <strong>Not:</strong> Eğer yöneticiyseniz ve bu sayfaya erişim verildiğinden eminseniz, uygulamanızın `Authorization` ayarlarını ve `Policy`/`Role` yapılandırmasını kontrol edin.
+                    </div>
+
+                    <hr>
+                    <div class="d-flex align-items-center mt-2">
+                        <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="support" class="rounded-circle me-2" width="44" height="44">
+                        <div>
+                            <div class="fw-semibold">CARBOOK Destek Ekibi</div>
+                            <div class="text-muted small">support@carbook.example • +90 212 000 00 00</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
